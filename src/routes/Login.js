@@ -41,15 +41,15 @@ function Login(){
             gap: "0",
             width:"100%",
             height:"100%",
-            margin: "50px auto",
+            margin: "70px auto",
             gridTemplateAreas: `"imagePart loginPart"`,
 
             gridTemplateColumns: {md : "3fr 4fr" , xs: '0fr 1fr'}
            }}>
                 <Box sx={{ gridArea: 'imagePart' , border:0 ,display:{md : 'block' , xs:'none'}}}>
-                    <Box component="img" src="img/login.png" width="100%" height="700px"></Box>
+                    <Box component="img" src="img/login.png" width="100%" height ="700px" ></Box>
                 </Box>
-                <Box sx={{ gridArea: 'loginPart', border:0 , display:'flex' , flexDirection:'column' , alignItems:'center' , justifyContent:'center'}}>
+                <Box sx={{height : "700px" , gridArea: 'loginPart', border:0 , display:'flex' , flexDirection:'column' , alignItems:'center' , justifyContent:'center'}}>
                     
                         <Typography variant="h3" sx={{mb:5}}>Login</Typography>
                         
