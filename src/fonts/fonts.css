@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "BarlowCondensed";
+    /* font-weight: 50; */
+    src: url("./BarlowCondensed.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "BarlowCondensed-Medium";
+    /* font-weight: 50; */
+    src: url("./BarlowCondensed-Medium.ttf") format("truetype");
+}
