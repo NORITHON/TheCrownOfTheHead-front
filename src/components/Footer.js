@@ -29,7 +29,8 @@ function Footer() {
             justifyContent: 'center', 
             float: { xs: 'center', md: 'left' } }}
         >
-        <StyledButton>© 2023 webCamp team 5 All Rights Reserved</StyledButton>
+        <StyledButton>© 2023 Noriton team 9-The Crown Of The Head </StyledButton>
+        {/*  All Rights Reserved */}
         </StyledFooterTypo>
 
         <Box component="div" sx={{ display: { xs: 'flex', md: 'none' } }}></Box>

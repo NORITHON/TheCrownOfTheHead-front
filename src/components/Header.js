@@ -1,28 +1,41 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import FontDownloadOutlinedIcon from '@mui/icons-material/FontDownloadOutlined';
-import { Box, Button, Select, Typography } from "@mui/material";
+import { Box, Button, Paper, Select, Typography } from "@mui/material";
 import "../fonts/fonts.css";
 import { Link } from "react-router-dom";
 const AlignedBox = styled(Box)((props) => ({
     display:'flex',
     alignItems:'center',
-    marginLeft : props.marginl
+    marginLeft : props.marginl,
 }));
 
 const StyledButton = styled(Button)({
-    color: 'gray',
-    fontFamily:'BarlowCondensed-Medium'
+    color: 'black',
+    fontFamily:'BarlowCondensed-Medium',
+    fontSize: '17px',
+    fontWeight:'bold'
 })
 
 const NotionFreeButton = styled(Button)({
-    backgroundColor: 'tomato',
+    backgroundColor: 'purple',
     color: 'white',
     borderRadius:'5px',
     '&:hover': {
         backgroundColor: 'gray',
     },
     height:'30px'
+})
+
+const HeaderBox = styled(Box)({
+    paddingLeft : '20px',
+    paddingRight: '20px',
+    justifyContent:'space-between',
+    display:'flex',
+    alignItems:'center',
+    borderRadius: 0,
+    height: '40px'
+
 })
 
 function Header(){
@@ -38,10 +51,12 @@ function Header(){
     document.body.style.margin = '0';
 
     return(
-        <AlignedBox sx={{ mx: 3}}>
+        <HeaderBox elevation={5}>
             <AlignedBox>
-                <FontDownloadOutlinedIcon sx={{color: 'red' , fontSize:'30px'}}/>
-                <Typography variant="h5" sx={{fontFamily:'BarlowCondensed' , mr:3 , }}>Notion</Typography>  
+                <FontDownloadOutlinedIcon sx={{color: 'purple' , fontSize:'30px'}}/>
+                <Typography variant="h5" sx={{fontFamily:'BarlowCondensed' , mr:3 , fontWeight:'bold' }}>Noriton</Typography>  
+            </AlignedBox>
+            <AlignedBox >
                 {/* <StyledButton>Product</StyledButton>
                 <StyledButton>Download</StyledButton>
                 <StyledButton>Solution</StyledButton>
@@ -66,15 +81,15 @@ function Header(){
                 
             </AlignedBox>
 
-            <AlignedBox marginl="auto">
+            <AlignedBox >
                 <StyledButton>Question</StyledButton>
                 <StyledButton>Log In</StyledButton>
                 <Link to={toggle === "http://localhost:3000/list" ? "../" : "./list"} onClick={onClick} style={{textDecoration:'inherit' , color:'inherit'}}>
-                    <NotionFreeButton>Notion 무료 체험</NotionFreeButton>
+                    <NotionFreeButton>Noriton</NotionFreeButton>
                     </Link>
                 
             </AlignedBox>
-        </AlignedBox>
+        </HeaderBox>
     );
 }
 
