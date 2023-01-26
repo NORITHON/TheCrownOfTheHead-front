@@ -6,6 +6,7 @@ import Form from "../routes/Form";
 import Home from "../routes/Home";
 import List from "../routes/List";
 import Login from "../routes/Login";
+import Manager from "../routes/Manager";
 import Page404 from "../routes/Page404";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -20,8 +21,9 @@ function App() {
         <Route path="/form" element={<Form />}/>
         <Route path="/list" element={ <List />} />
         <Route path="/login" element={ <Login />} />
+        <Route path="/manage" element={ <Manager />} />
         <Route path="*" element={<Page404 />} />
-
+        
       </Routes>
       <Footer />
     </BrowserRouter>

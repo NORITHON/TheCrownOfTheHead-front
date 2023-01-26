@@ -82,7 +82,7 @@ function Home(){
             {items.map( (item , index) => (
                 
                 
-                <Grid item key={index} md={3} sx={3} xs={6} style={{ minWidth:"300px" , marginY:'0px' }}>
+                <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px" , marginY:'0px' }}>
                     <Link to="./detail" style={{textDecoration:'inherit' , color:'inherit'}} state={{
                         name : item.name,
                         price : item.price,
