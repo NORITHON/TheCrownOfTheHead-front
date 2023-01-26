@@ -11,9 +11,9 @@ import styled from "styled-components";
 
 function Manager(){
 
-    
-        
-    
+    const [isPopup , setIsPopup] = useState(false);
+
+    const [popup , setPopup] = useState();
 
     const [samples , setSamples] = useState([{
         name : "yellow muffler",
@@ -105,10 +105,23 @@ function Manager(){
         }
     }
 
+    const onClickDetail = (sample) =>{
+        setPopup(sample);
+        setIsPopup(true);
+    }
+
     return(
-        <Box>
         
-        <Box sx={{
+
+            <Box>
+                
+        {isPopup ? <Box>
+            <Box>
+                
+            </Box>
+        </Box> :
+            <Box>
+            <Box sx={{
             display: { md : "flex", sx: 'none'},
             gap: "1rem",
             width:"90%",
@@ -167,7 +180,6 @@ function Manager(){
                     
                 
         </Box>
-        
         <Box sx={{
              display: { md : "flex", sx: 'none'},
              gap: "1rem",
@@ -180,14 +192,14 @@ function Manager(){
             </Box>
 
             <Box sx={{gridArea : 'main2' , border: 0 , width:'70%' , minWidth:'550px'}}>
-                <Box sx={{borderBottom:2 , borderColor:"lightgray" , pb:1 , mb:3}}>
+                <Box sx={{borderBottom:2 , borderColor:"lightgray" , pb:1 , mb:5}}>
                     <Typography variant="body1">상품명</Typography>
                 </Box>
                 
                 <Grid container sx={{justifyContent:'space-between'}}>
                 {samples.map( (sample, index) => (
                         <Grid key={index} item md={3.5}  sx={{mb:5}}>
-                            <Box component="img" src={sample.image} sx={{width:"100%" ,maxHeight:"400px"}}></Box>
+                            <Box component="img" src={sample.image} sx={{width:"100%" ,maxHeight:"350px"}}></Box>
                             <Box sx={{display : 'flex' , justifyContent:"space-between" , alignItems:'center' , mt:1 , mb:0.5}}>
                                 <Typography variant="body1">{sample.name}</Typography>
                                 <Box>
@@ -195,9 +207,9 @@ function Manager(){
                                 <Button id="미승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray'}}>미승인</Button>   
                                 </Box>
                             </Box>
-                            <Box sx={{display : 'flex' , alignItems:'center'}}>
-                            <Typography variant="caption">상세보기 </Typography>
-                            <ArrowForwardIosIcon sx={{fontSize:'15px' , mb:0.3 , ml:1}}/>
+                            <Box onClick={ () => onClickDetail(sample)} sx={{display : 'flex' , alignItems:'center'}}>
+                            <Typography variant="caption" sx={{color:'gray'}}>상세보기 </Typography>
+                            <ArrowForwardIosIcon sx={{fontSize:'13px' , mb:0.3 , ml:1 , color:'gray'}}/>
                             </Box>
                         </Grid>
                     ))}
@@ -206,7 +218,10 @@ function Manager(){
 
 
             </Box>
+    
+        </Box> 
         </Box>
+        }
         
         </Box>
     );
