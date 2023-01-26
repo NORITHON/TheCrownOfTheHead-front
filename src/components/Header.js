@@ -79,11 +79,14 @@ function Header(){
                 </Link>
                 
                 
+                
             </AlignedBox>
 
             <AlignedBox >
                 <StyledButton>Question</StyledButton>
-                <StyledButton>Log In</StyledButton>
+                <Link to="./login" style={{ textDecoration:'inherit' , color:'inherit'}}>
+                    <StyledButton>Log In</StyledButton>
+                </Link>
                 <Link to={toggle === "http://localhost:3000/list" ? "../" : "./list"} onClick={onClick} style={{textDecoration:'inherit' , color:'inherit'}}>
                     <NotionFreeButton>Noriton</NotionFreeButton>
                     </Link>

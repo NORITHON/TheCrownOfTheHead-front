@@ -200,7 +200,7 @@ function Detail(){
                                     <Typography variant="body1" sx={{fontWeight: 'bold'}}>{ (totalCost + shippingFee)===10000 ? 0 : (totalCost + shippingFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Typography>
                                 </Box>
 
-                                <Box sx={{display : 'flex', justifyContent:'end'}}>
+                                <Box sx={{display : 'flex', justifyContent:'end' , mt:2}}>
                                     
                                     <Button sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0}}>장바구니 담기</Button>
                                     <Button sx={{backgroundColor:'lightGray', opacity:'0.7' , color:'black', borderRadius:0}}>구매하기</Button>
