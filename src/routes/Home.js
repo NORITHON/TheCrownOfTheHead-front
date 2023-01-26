@@ -23,7 +23,7 @@ function Home(){
 
     const [items , setItems] = useState([{
         name : 'Cashmere basic muffler (cashmere 100%)',
-        price : '89,000원',
+        price : 89000,
         image : "/img/clothes.png",
         content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
         from : 'Mongolia'
