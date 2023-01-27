@@ -1,12 +1,13 @@
 import { Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BuildIcon from '@mui/icons-material/Build';
 import styled from "styled-components";
 import CloseIcon from '@mui/icons-material/Close';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import {createItem, getSamples} from "../apis/apis";
 
 const StyledTextField = styled(TextField)({
     ' .MuiOutlinedInput-root': {
@@ -40,44 +41,47 @@ function Manager(){
 
     const [isPopup , setIsPopup] = useState(false);
 
-    const [popup , setPopup] = useState();
+    const [popup , setPopup] = useState([]);
 
-    const [samples , setSamples] = useState([{
-        name : "yellow muffler",
-        image : "img/sample1.png",
-        content: "This is very good!"
-    },
-    {
-        name : "white baraclaba",
-        image : "img/sample2.png",
-        content: "This is very good!"
-    },
-    
-    {
-        name : "cashmere knit",
-        image : "img/sample3.png",
-        content: "This is very good!"
-    },
-    
-    {
-        name : "shirt-sleeved T",
-        image : "img/sample4.png",
-        content: "This is very good!"
-    },
-    
-    {
-        name : "short-sleeved T",
-        image : "img/sample4.png",
-        content: "This is very good!"
-    },
+    const [samples , setSamples] = useState([]);
+    //     {
+    //     name : "yellow muffler",
+    //     image : "img/sample1.png",
+    //     content: "This is very good!"
+    // },
+    // {
+    //     name : "white baraclaba",
+    //     image : "img/sample2.png",
+    //     content: "This is very good!"
+    // },
+    //
+    // {
+    //     name : "cashmere knit",
+    //     image : "img/sample3.png",
+    //     content: "This is very good!"
+    // },
+    //
+    // {
+    //     name : "shirt-sleeved T",
+    //     image : "img/sample4.png",
+    //     content: "This is very good!"
+    // },
+    //
+    // {
+    //     name : "short-sleeved T",
+    //     image : "img/sample4.png",
+    //     content: "This is very good!"
+    // },
+    //
+    // {
+    //     name : "short-sleeved T",
+    //     image : "img/sample4.png",
+    //     content: "This is very good!"
+    // },
+    //
+// ]
+//     )
 
-    {
-        name : "short-sleeved T",
-        image : "img/sample4.png",
-        content: "This is very good!"
-    },
-    
-])
 
     const [rows, setRows] = useState([{
         order_id: "1",
@@ -143,7 +147,7 @@ function Manager(){
     const onClickDetail = (sample) =>{
         setPopup(sample);
         setIsPopup(true);
-        setPopupName(sample.name);
+        setP1(sample.title);
         window.scrollTo(0, 0);
     }
     const onClickClosePopup = () => {
@@ -153,14 +157,53 @@ function Manager(){
 
     const [popupName, setPopupName] = useState("");
 
-    const onChangePopupName = (e) => {
-        setPopupName(e.target.value);
+    const [p1 , setP1] = useState("");
+    const [p2 , setP2] = useState("");
+    const [p3 , setP3] = useState("");
+    const [p4, setP4] = useState("");
+
+    const onchangep = (e) => {
+        if(e.target.id==="p1"){
+            setP1(e.target.value);
+        }else if(e.target.id==="p2"){
+            setP2(e.target.value);
+        }else if(e.target.id ==="p3"){
+            setP3(e.target.value);
+        }else if(e.target.id ==="p4"){
+            setP4(e.target.value);
+        }
     }
 
+    const onMakeItem = async () => {
+        const data = {
+            name : p1,
+            laborCost : parseInt(p2),
+            materialCost : parseInt(p3),
+            circulationCost : 100,
+            sampleId : popup.id,
+            stockQuantity : parseInt(p4),
+        }
+        createItem(data);
+        setIsPopup(false);
+        setP1("");
+        setP2("");
+        setP3("");
+        setP4("");
+
+    }
+
+    useEffect( () => {
+        const getAllSample = async () =>{
+            const data = await getSamples();
+
+            setSamples(data);
+        }
+        getAllSample();
+    } , [samples])
     
 
     return(
-        
+
 
             <Box ref={scrollRef}>
                 
@@ -171,10 +214,10 @@ function Manager(){
                         <CloseIcon onClick={onClickClosePopup} fontSize="large"/>
                     </Box>
                     <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start'}}>
-                        <Typography variant="h4">About {popup.name}</Typography>
+                        <Typography variant="h4">About {popup.title}</Typography>
 
                         <Box sx={{display : 'flex' , width:'100%' ,height: "250px" ,borderBottom:2 , borderColor:'lightgray' , py:3 }}>
-                            <Box component="img" src={popup.image} width="40%" sx={{ mr:2}}></Box>
+                            <Box component="img" src={popup.imageUrl} width="40%" sx={{ mr:2}}></Box>
                             <Box>
                                 <Box sx={{display:'flex' , alignItems:'center'}}>
                                 <ArticleOutlinedIcon sx={{mr:1}} />
@@ -185,29 +228,29 @@ function Manager(){
                         </Box>
                         <Box sx={{display : 'flex' , justifyContent:'space-between' , alignItems:'center',width:'100%', pt:2 }}>
                             <Typography variant="body1">제품명</Typography>
-                            <StyledTextField onChange={onChangePopupName} value={popupName}/>
+                            <StyledTextField id="p1" value={p1} onChange={onchangep}/>
                             {/* <Typography variant="body1">{popup.rawMaterialCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Typography> */}
                         </Box>
 
                         <Box sx={{display : 'flex' , justifyContent:'space-between' , alignItems:'center',width:'100%' }}>
                             <Typography variant="body1">원자재 비용</Typography>
-                            <StyledTextField />
+                            <StyledTextField id="p2" value={p2} onChange={onchangep} />
                             {/* <Typography variant="body1">{popup.rawMaterialCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Typography> */}
                         </Box>
 
                         <Box sx={{display : 'flex' , justifyContent:'space-between', width:'100%', alignItems:'center'}}>
                             <Typography variant="body1">공장 인건비</Typography>
                             {/* <Typography variant="body1"></Typography> */}
-                            <StyledTextField />
+                            <StyledTextField id="p3" value={p3} onChange={onchangep}/>
                         </Box>
 
                         <Box sx={{display : 'flex' , justifyContent:'space-between', alignItems:'center', width:'100%' , pr:2}}>
                             <Typography>공모 모집 인원</Typography>
-                            <StyledTextField />
+                            <StyledTextField id="p4" value={p4} onChange={onchangep}/>
                             {/* <Typography>{popup.distributionCost}</Typography> */}
                         </Box>
                         <Box sx={{display:'flex', justifyContent:'end' , width:'100%'}}>
-                            <StyledButton sx={{backgroundColor:'gray' , color:'white', my:1}}>신청하기</StyledButton>
+                            <StyledButton onClick={onMakeItem} sx={{backgroundColor:'gray' , color:'white', my:1}}>신청하기</StyledButton>
                         </Box>
                     </Box>
                 </Paper>
@@ -292,9 +335,9 @@ function Manager(){
                 <Grid container sx={{justifyContent:'space-between'}}>
                 {samples.map( (sample, index) => (
                         <Grid key={index} item md={3.5}  sx={{mb:5}}>
-                            <Box component="img" src={sample.image} sx={{width:"100%" ,maxHeight:"350px"}}></Box>
+                            <Box component="img" src={sample.imageUrl} sx={{width:"100%" ,maxHeight:"350px"}}></Box>
                             <Box sx={{display : 'flex' , justifyContent:"space-between" , alignItems:'center' , mt:1 , mb:0.5}}>
-                                <Typography variant="body1">{sample.name}</Typography>
+                                <Typography variant="body1">{sample.title}</Typography>
                                 <Box>
                                 <Button id="승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray'}}>승인</Button>   
                                 <Button id="미승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray'}}>미승인</Button>   

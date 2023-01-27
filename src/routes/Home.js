@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
+import {getItems} from "../apis/apis";
 
 const ImageBox = styled(Box)({
     width: '100%' , 
@@ -21,57 +22,68 @@ const Item = styled(Box)({
 
 function Home(){
 
-    const [items , setItems] = useState([{
-        name : 'Cashmere basic muffler (cashmere 100%)',
-        price : 89000,
-        image : "/img/clothes.png",
-        content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
-        from : 'Mongolia'
-    
-    },
-    {
-        name : '상품2',
-        price : '23000원',
-        image : "/img/clothes.png",
-        content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
-        from : 'Mongolia'
-    },
-    {
-        name : '상품3',
-        price : '33000원',
-        image : "/img/clothes.png",
-        content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
-        from : 'Mongolia'
-    },
-    {
-        name : '상품4',
-        price : '43000원',
-        image : "/img/clothes.png",
-        content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
-        from : 'Mongolia'
-    },
-    {
-        name : '상품5',
-        price : '53000원',
-        image : "/img/clothes.png",
-        content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
-        from : 'Mongolia'
-    },
-    {
-        name : '상품6',
-        price : '63000원',
-        image : "/img/clothes.png",
-        content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
-        from : 'Mongolia'
-    },
-    {
-        name : '상품7',
-        price : '63000원',
-        image : "/img/clothes.png",
-        content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
-        from : 'Mongolia'
-    },
-]);
+
+
+    const [items , setItems] = useState([]);
+
+    useEffect(() => {
+        const getAllItems = async () => {
+            const data = await getItems();
+            setItems(data);
+        }
+        getAllItems();
+    } , [items])
+    //     {
+    //     name : 'Cashmere basic muffler (cashmere 100%)',
+    //     price : 89000,
+    //     image : "/img/clothes.png",
+    //     content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
+    //     from : 'Mongolia'
+    //
+    // },
+    // {
+    //     name : '상품2',
+    //     price : '23000원',
+    //     image : "/img/clothes.png",
+    //     content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
+    //     from : 'Mongolia'
+    // },
+    // {
+    //     name : '상품3',
+    //     price : '33000원',
+    //     image : "/img/clothes.png",
+    //     content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
+    //     from : 'Mongolia'
+    // },
+    // {
+    //     name : '상품4',
+    //     price : '43000원',
+    //     image : "/img/clothes.png",
+    //     content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
+    //     from : 'Mongolia'
+    // },
+    // {
+    //     name : '상품5',
+    //     price : '53000원',
+    //     image : "/img/clothes.png",
+    //     content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
+    //     from : 'Mongolia'
+    // },
+    // {
+    //     name : '상품6',
+    //     price : '63000원',
+    //     image : "/img/clothes.png",
+    //     content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
+    //     from : 'Mongolia'
+    // },
+    // {
+    //     name : '상품7',
+    //     price : '63000원',
+    //     image : "/img/clothes.png",
+    //     content : "몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. 몽골의 100% 고급 캐시미어로 제작된 Alto는 우아함과 따뜻함을 더해줍니다. ",
+    //     from : 'Mongolia'
+    // },
+// ]);
 
     return(
         <Box>
@@ -83,11 +95,11 @@ function Home(){
             {items.map( (item , index) => (
                 <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px", height:'350px' }}>
                     <Link to="./detail" style={{textDecoration:'inherit' , color:'inherit'}} state={{
+                        id : item.id,
                         name : item.name,
                         price : item.price,
-                        image : item.image,
-                        content : item.content,
-                        from : item.from
+                        image : item.sample.imageUrl,
+                        content : item.sample.content,
                     }}>
                 <Box elevation={5} sx={{width:'100%' ,height:'' , display:'flex' , flexDirection:'column' ,alignItems:'center' , mt : 10}}>
                     <Box component="img" src={item.image} sx={{width:"300px" , height:"300px" }}></Box>  
