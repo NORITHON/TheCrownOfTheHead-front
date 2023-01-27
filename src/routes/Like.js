@@ -3,9 +3,8 @@ import { Box } from "@mui/system";
 import React, {useEffect, useRef, useState} from "react";
 import { Link } from "react-router-dom";
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import {getSamples} from "../apis/apis";
-
-
+import {getSamples, readAlreadyLiked, setLike, setUnLike} from "../apis/apis";
+import {client} from "./Login";
 
 function Like(){
 
@@ -78,12 +77,28 @@ function Like(){
 
     const heartIconRef = useRef();
 
-    const onClick = (sample,idx) => {
+    const onClick = async (sample,idx) => {
 
+        
         let copiedSamples = [...samples];
 
-        copiedSamples[idx].likeCount = sample.likeCount + 1;
+        const data = {
+            memberId : client.id,
+            sampleId : sample.id,
+        }
 
+        const allAlreadyLikedData = await readAlreadyLiked(client.id);
+        
+        const result = allAlreadyLikedData.filter( (element , index) => element.sample.id === sample.id );
+
+        if(result.length === 0){
+            copiedSamples[idx].likeCount = sample.likeCount + 1
+            await setLike(data);
+        } 
+        else{
+            await setUnLike(data);
+            copiedSamples[idx].likeCount = sample.likeCount - 1
+        }
         setSamples(copiedSamples);
     }
 

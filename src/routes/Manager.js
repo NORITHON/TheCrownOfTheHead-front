@@ -7,7 +7,7 @@ import BuildIcon from '@mui/icons-material/Build';
 import styled from "styled-components";
 import CloseIcon from '@mui/icons-material/Close';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import {createItem, getSamples} from "../apis/apis";
+import {createItem, createOrder, getSamples, readItems, readOrders} from "../apis/apis";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const StyledTextField = styled(TextField)({
@@ -38,6 +38,17 @@ const StyledButton = styled(Button)({
     },
 })
 
+const ApprovedButton = styled(Button)({
+    color:'white', 
+    width:'30px' ,
+    backgroundColor:"gray" ,
+    height:"30px",
+    '&:hover': {
+        backgroundColor:"gray" ,
+        opacity:'0.7'
+    },
+})
+
 function Manager(){
 
     const [isPopup , setIsPopup] = useState(false);
@@ -45,50 +56,7 @@ function Manager(){
     const [popup , setPopup] = useState([]);
 
     const [samples , setSamples] = useState([]);
-
-    //     {
-    //     name : "yellow muffler",
-    //     image : "img/sample1.png",
-    //     content: "This is very good!"
-    // },
-    // {
-    //     name : "white baraclaba",
-    //     image : "img/sample2.png",
-    //     content: "This is very good!"
-    // },
-    //
-    // {
-    //     name : "cashmere knit",
-    //     image : "img/sample3.png",
-    //     content: "This is very good!"
-    // },
-    //
-    // {
-    //     name : "shirt-sleeved T",
-    //     image : "img/sample4.png",
-    //     content: "This is very good!"
-    // },
-    //
-    // {
-    //     name : "short-sleeved T",
-    //     image : "img/sample4.png",
-    //     content: "This is very good!"
-    // },
-    //
-    // {
-    //     name : "short-sleeved T",
-    //     image : "img/sample4.png",
-    //     content: "This is very good!"
-    // },
-    //
-// ]
-//     )
-
-    const [order , setOrder] = useState();
-
-    useEffect( () => {
-
-    } , [])
+    
 
     const [rows, setRows] = useState([{
         order_id: "1",
@@ -218,7 +186,35 @@ function Manager(){
 
     } , [samples])
 
-    
+
+    const [orders , setOrders] = useState([]);
+    const [items , setItems] = useState([]);
+
+    useEffect( () => {
+        const readAllOrders = async() => {
+            const ordersAllData = await readOrders();
+
+             setOrders(ordersAllData);
+        }
+        readAllOrders();
+
+        const readAllItems = async() => {
+            const itemsAllData = await readItems();
+
+             setItems(itemsAllData);
+        }
+         readAllItems();
+    } , [orders,items])
+
+
+    const onApprove = async(item) => {
+        const data = {
+            itemId : item.id,
+        }
+
+        createOrder(data);
+
+    }
 
     return(
 
@@ -294,7 +290,7 @@ function Manager(){
                     <Typography variant="h5" sx={{ mr : 8 , mb:3}}>주문내역 확인</Typography>
                     <ArrowForwardIosIcon sx={{ mr : 8}} fontSize="large"/>
                 </Box>
-                <Box sx={{ gridArea: 'main1', border:0 ,height:"300px" , width:'75%' , minWidth:'550px'}}>
+                <Box sx={{ gridArea: 'main1', border:0 , width:'75%' , minWidth:'550px'}}>
                 
                 <TableContainer component={Paper} elevation={5}>
                     <Table sx={{}} size="small" aria-label="a dense table">
@@ -310,24 +306,46 @@ function Manager(){
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {rows.map((row,index) => (
+                        {items.map((item,index) => (
+                            <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 }}}>
+                            <TableCell align="center" component="th" scope="row">
+                                {item.id}
+                            </TableCell>
+                            <TableCell align="center">{item.name}</TableCell>
+                            <TableCell align="center">{item.price}</TableCell>
+                            <TableCell align="center">{item.count}</TableCell>
+                            <TableCell align="center">{item.stockQuantity}</TableCell>
+                            <TableCell align="center">waiting</TableCell>
+                            <TableCell > <ApprovedButton onClick={() => onApprove(item)}>승인</ApprovedButton></TableCell>
+                            
+                            
+                            
+                            </TableRow>
+                        ))}
+
+
+
+
+
+                            {orders.map((order,index) => (
                             <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell align="center" component="th" scope="row">
-                                {row.order_id}
+                                {order.id}
                             </TableCell>
-                            <TableCell align="center">{row.order_date}</TableCell>
-                            <TableCell align="center">{row.total_cost}</TableCell>
-                            <TableCell align="center">{row.member_name}</TableCell>
-                            <TableCell align="center">{row.state}</TableCell>
+                            <TableCell align="center">{order.item.name}</TableCell>
+                            <TableCell align="center">{order.totalPrice}</TableCell>
+                            <TableCell align="center">{order.count}</TableCell>
+                            <TableCell align="center">0</TableCell>
+                            <TableCell align="center">Approved</TableCell>
                             <TableCell align="center"> 
-                            <Box  sx={{display:'flex' , alignItems:'center' , justifyContent:'center' ,color:'gray'}}>
-                                <BuildIcon id="modify" onClick={onClick} fontSize="small"/> 
-                                <DeleteIcon id="delete" onClick={onClick} /> 
-                            </Box>
+                            
                             </TableCell>
                             
                             </TableRow>
                         ))}
+
+
+
                         </TableBody>
                     </Table>
                     </TableContainer>

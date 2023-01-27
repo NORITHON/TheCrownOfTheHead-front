@@ -62,3 +62,44 @@ export const createFund = (data) => {
 
     return response;
 }
+
+// like page
+
+export const setLike = (data) => {
+    const response = axios.post("http://localhost:8080/api/sample/like", data);
+
+    return response;
+}
+
+export const readAlreadyLiked = async(id) => {
+    const response = await axios.get(`http://localhost:8080/api/sample/alreadyLiked/${id}`);
+
+    return response.data;
+}
+
+export const setUnLike = (data) => {
+    const response = axios.post("http://localhost:8080/api/sample/unlike" , data);
+    
+    return response;
+}
+
+// manage page
+
+
+export const readItems = async() => {
+    const response = await axios.get("http://localhost:8080/api/item/waiting");
+
+    return response.data;
+}
+
+export const readOrders = async() => {
+    const response = await axios.get("http://localhost:8080/api/order/approved");
+
+    return response.data;
+}
+
+export const createOrder = (data) => {
+    const response = axios.post("http://localhost:8080/api/order",data);
+
+    return response;
+}
