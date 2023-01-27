@@ -4,7 +4,7 @@ import React, {useEffect, useRef, useState} from "react";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BuildIcon from '@mui/icons-material/Build';
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import CloseIcon from '@mui/icons-material/Close';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import {createItem, createOrder, getSamples, readItems, readOrders} from "../apis/apis";
@@ -58,49 +58,7 @@ function Manager(){
     const [samples , setSamples] = useState([]);
     
 
-    const [rows, setRows] = useState([{
-        order_id: "1",
-        order_date: "Mon Dec 12",
-        total_cost: 100200,
-        member_name: "Ian1", 
-        state: "배송중",
-    },
-    {
-        order_id: "2",
-        order_date: "Feb May 21",
-        total_cost: 99800,
-        member_name: "Ian2", 
-        state: "취소요청",
-    },
-    {
-        order_id: "3",
-        order_date: "Wed Jul 21",
-        total_cost: 399800,
-        member_name: "Ian3", 
-        state: "취소요청",
-    },
-    {
-        order_id: "4",
-        order_date: "Thu Dec 23",
-        total_cost: 499800,
-        member_name: "Ian4", 
-        state: "교환요청",
-    },
-    {
-        order_id: "5",
-        order_date: "Thu Jan 27",
-        total_cost: 9649800,
-        member_name: "Ian5", 
-        state: "배송중",
-    },
-    {
-        order_id: "6",
-        order_date: "Mon May 21",
-        total_cost: 99800,
-        member_name: "Ian6", 
-        state: "교환요청",
-    },
-    ])
+   
 
     const onClick = (e) =>{
         if(e.target.id === "modify"){
@@ -276,13 +234,6 @@ function Manager(){
             gap: "1rem",
             width:"90%",
             margin: "100px auto",
-            // gridTemplateAreas: {md :    `"sidebar1 main1"
-            //                             "sidebar2 main2"`,
-            //                     sm :    `"sidebar1"
-            //                             "main1"
-            //                             "sidebar2"
-            //                             "main2"`},
-            // gridTemplateColumns:`"200px 5fr"`,
                                 
 
            }}>
@@ -312,7 +263,7 @@ function Manager(){
                                 {item.id}
                             </TableCell>
                             <TableCell align="center">{item.name}</TableCell>
-                            <TableCell align="center">{item.price}</TableCell>
+                            <TableCell align="center">{item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</TableCell>
                             <TableCell align="center">{item.count}</TableCell>
                             <TableCell align="center">{item.stockQuantity}</TableCell>
                             <TableCell align="center">waiting</TableCell>
@@ -333,7 +284,7 @@ function Manager(){
                                 {order.id}
                             </TableCell>
                             <TableCell align="center">{order.item.name}</TableCell>
-                            <TableCell align="center">{order.totalPrice}</TableCell>
+                            <TableCell align="center">{order.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</TableCell>
                             <TableCell align="center">{order.count}</TableCell>
                             <TableCell align="center">0</TableCell>
                             <TableCell align="center">Approved</TableCell>

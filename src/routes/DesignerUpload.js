@@ -58,24 +58,24 @@ const StyledTextField2 = styled(TextField)({
 
 })
 
-
 function DesignerUpload(){
 
     const [title , setTitle] = useState("");
     const [content, setContent] = useState("");
 
-    const onChange = (e) => {
-        if(e.target.id==="title"){
-            setTitle(e.target.value);
-        }else if(e.target.id ==="content"){
-            setContent(e.target.value);
-        }
+    
+const onChange = (e) => {
+    if(e.target.id==="title"){
+        setTitle(e.target.value);
+    }else if(e.target.id ==="content"){
+        setContent(e.target.value);
     }
+}
 
-    const onSubmit = async () => {
+    const onSubmit = async (e) => {
         const data ={
             title : title,
-            imageUrl : "img/sample1.png",
+            imageUrl : "img/"+ e.target.files[0].name,
             content : content,
             designerId : designer.id
         }
@@ -146,7 +146,7 @@ const inputRef = useRef(null);
 
             </Box>
             <Box sx={{width:'70%' , marginX:'auto' , display:'flex' , justifyContent:'right'}}>
-                <StyledButton > UPLOAD </StyledButton>
+                <StyledButton onclick={onSubmit}> UPLOAD </StyledButton>
             </Box>
         </Box>
     );

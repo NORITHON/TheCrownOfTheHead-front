@@ -228,7 +228,7 @@ function Detail(){
                         </Box>
                         
                         <InfoSecondBox>
-                            <Typography variant="body2">{clothes.content}징기스칸은 일본 홋카이도 지방의 양고기 요리로서, 머튼과 램을 구워먹는 요리의 일종이다. 한자로는 成吉思汗이라고 표기하기도 한다. 일본에서 기원한 양고기 요리로, 이름은 몽골 제국의 군주 칭기즈 칸의 일본어식 발음에서 유래하였으나 몽골이나 칭기즈 칸과 직접적인 연관은 전혀 없다.</Typography>
+                            <Typography variant="body2">{clothes.content}</Typography>
                         </InfoSecondBox>
 
                         <InfoThirdBox >
