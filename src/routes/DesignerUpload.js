@@ -1,9 +1,10 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useCallback, useRef, useState } from "react";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from "styled-components";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+
 
 const StyledButton = styled(Button)({
     color:'white', 
@@ -16,7 +17,7 @@ const StyledButton = styled(Button)({
     '&:hover': {
         backgroundColor:"gray" ,
     },
-})
+});
 
 const StyledTextField1 = styled(TextField)({
     ' .MuiOutlinedInput-root': {
@@ -52,8 +53,36 @@ const StyledTextField2 = styled(TextField)({
 
 })
 
+
 function DesignerUpload(){
 
+
+
+
+// 수정
+
+const [leftImage, setLeftImage] = useState("");
+
+const inputRef = useRef(null);
+    
+    const onUploadImage = useCallback((e) => {
+      if (!e.target.files) {
+        return;
+      }
+      setLeftImage( "img/"+e.target.files[0].name);
+    }, []);
+
+    
+    const onUploadImageButtonClick = useCallback(() => {
+      if (!inputRef.current) {
+        return;
+      }
+      inputRef.current.click();
+    }, []);
+
+
+
+///////////////////////////////////////
 
     return(
         <Box>
@@ -64,10 +93,16 @@ function DesignerUpload(){
             </Box>
             <Box sx={{width:'70%' , marginX:'auto' , display:'flex'}}>
 
-                    <Box sx={{width:'500px' , height:'400px' , border:1}}>
+                    <Box component="img" src={leftImage} sx={{width:'500px' , height:'400px' , border:2 , borderColor:'lightgray'}}>
                         
                     </Box>
-                    <FileUploadIcon sx={{mx:3 , marginY:'auto'}} />
+                        <FileUploadIcon onClick={onUploadImageButtonClick} sx={{mx:3 , marginY:'auto' , border:1,borderRadius:"50%",color:"#9D1CE5" , p:2}} />
+                    <Box>
+                    <input style={{display:'none'}} type="file" accept="image/*" ref={inputRef} onChange={onUploadImage} />
+                    {/* <Button label="이미지 업로드" onClick={onUploadImageButtonClick} /> */}
+                    </Box>
+
+
                     <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start' , width:'50%' , border:0 , justifyContent:'end'}}>
                         <Typography variant="body1" sx={{fontWeight:'bold'}}>디자인 이름</Typography>
                         <StyledTextField1 sx={{width:'100%'}}/>
@@ -78,7 +113,7 @@ function DesignerUpload(){
 
             </Box>
             <Box sx={{width:'70%' , marginX:'auto' , display:'flex' , justifyContent:'right'}}>
-                <StyledButton sx={{mt:2}}> 상품 올리기 </StyledButton>
+                <StyledButton sx={{mt:2 ,color:'inherit', backgroundColor:'inherit'}}> 상품 올리기 </StyledButton>
             </Box>
         </Box>
     );

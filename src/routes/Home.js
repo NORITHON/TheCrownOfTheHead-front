@@ -81,7 +81,7 @@ function Home(){
 
         <Grid container sx={{ paddingX:10,justifyContent:'space-between'}}>
             {items.map( (item , index) => (
-                <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px" }}>
+                <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px", height:'350px' }}>
                     <Link to="./detail" style={{textDecoration:'inherit' , color:'inherit'}} state={{
                         name : item.name,
                         price : item.price,
@@ -89,7 +89,7 @@ function Home(){
                         content : item.content,
                         from : item.from
                     }}>
-                <Box elevation={5} sx={{width:'100%' , height:'350px' , display:'flex' , flexDirection:'column' ,alignItems:'center' , mt : 10}}>
+                <Box elevation={5} sx={{width:'100%' ,height:'' , display:'flex' , flexDirection:'column' ,alignItems:'center' , mt : 10}}>
                     <Box component="img" src={item.image} sx={{width:"300px" , height:"300px" }}></Box>  
                     <Typography variant="caption" color="gray" >{item.name}</Typography>
                     <Typography variant="body2" >{item.price}</Typography>
