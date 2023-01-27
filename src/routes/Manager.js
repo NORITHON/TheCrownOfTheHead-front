@@ -24,6 +24,18 @@ const StyledTextField = styled(TextField)({
     
 })
 
+const StyledButton = styled(Button)({
+    color:'white', 
+    width:'70px' ,
+    backgroundColor:"gray" ,
+    marginBottom: "30px",
+    height:"40px",
+    
+    '&:hover': {
+        backgroundColor:"gray" ,
+    },
+})
+
 function Manager(){
 
     const [isPopup , setIsPopup] = useState(false);
@@ -154,16 +166,16 @@ function Manager(){
                 
         {isPopup ? <Box>
             <Box sx={{display : 'flex' , pt:3, justifyContent:'center' , width:'100%' , height:'800px' , backgroundColor:'gray'}}>
-                <Paper sx={{width : "50%" , height:'83%' , borderRadius:'5%' , pl : 7 , pr:3 , pt:3}}>
+                <Paper sx={{width : "50%" , height:'85%' , borderRadius:'5%' , pl : 7 , pr:3 , pt:3}}>
                     <Box sx={{display:'flex' , justifyContent:'right'}}>
                         <CloseIcon onClick={onClickClosePopup} fontSize="large"/>
                     </Box>
-                    <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start' , pt:2}}>
+                    <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start'}}>
                         <Typography variant="h4">About {popup.name}</Typography>
 
                         <Box sx={{display : 'flex' , width:'100%' ,height: "250px" ,borderBottom:2 , borderColor:'lightgray' , py:3 }}>
                             <Box component="img" src={popup.image} width="40%" sx={{ mr:2}}></Box>
-                            <Box >
+                            <Box>
                                 <Box sx={{display:'flex' , alignItems:'center'}}>
                                 <ArticleOutlinedIcon sx={{mr:1}} />
                                 <Typography variant="h5">Product Information</Typography>
@@ -194,11 +206,8 @@ function Manager(){
                             <StyledTextField />
                             {/* <Typography>{popup.distributionCost}</Typography> */}
                         </Box>
-
-                        <Box sx={{display:'flex' , justifyContent:'end' , width:'61.5%'}}>
-                            <Typography sx={{mr: 3}}></Typography>
-                            
-                            {/* <Typography>{popup.totalCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Typography> */}
+                        <Box sx={{display:'flex', justifyContent:'end' , width:'100%'}}>
+                            <StyledButton sx={{backgroundColor:'gray' , color:'white', my:1}}>신청하기</StyledButton>
                         </Box>
                     </Box>
                 </Paper>
