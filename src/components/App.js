@@ -13,8 +13,11 @@ import Header from "./Header";
 import Designer from "../routes/Designer";
 import Like from "../routes/Like";
 import DesignerUpload from "../routes/DesignerUpload";
-
+import "./font.css";
 function App() {
+
+  // document.body.style.* = "Lovera !important";
+
   return (
     <BrowserRouter>
     <Header />

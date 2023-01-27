@@ -84,7 +84,6 @@ function Home(){
     //     from : 'Mongolia'
     // },
 // ]);
-
     return(
         <Box>
             <ImageBox elevation={10}>
