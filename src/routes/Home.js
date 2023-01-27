@@ -105,7 +105,7 @@ function Home(){
                     
                     <Box component="img" src={item.sample.imageUrl} sx={{ height:"300px" , display:'flex' , justifyContent:'start' }}></Box>  
                     
-                    <Box sx={{display:'flex', flexDirection:'column' , mt:3 }}>
+                    <Box sx={{display:'flex', flexDirection:'column' , mt:3,  mx:2 }}>
                         <Typography variant="body1" color="gray">{item.name}</Typography>
                         <Box sx={{display:'flex' , justifyContent:'space-between', alignItems:'center',mt:1}}>
                             <Box sx ={{display:'flex' , alignItems:'center'}}>

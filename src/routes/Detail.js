@@ -224,37 +224,37 @@ function Detail(){
                     <InfoPartBox >
                         <Box>
                             <Typography variant="h5">{clothes.name}</Typography>
-                            <Typography variant="h5" sx={{fontWeight:'bold' , my:2}}>{clothes.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Typography>
+                            <Typography variant="h5" sx={{fontWeight:'bold' , my:2, mb:5}}>{clothes.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Typography>
                         </Box>
                         
                         <InfoSecondBox>
-                            <Typography variant="body2">{clothes.content}</Typography>
+                            <Typography variant="body2">{clothes.content}징기스칸은 일본 홋카이도 지방의 양고기 요리로서, 머튼과 램을 구워먹는 요리의 일종이다. 한자로는 成吉思汗이라고 표기하기도 한다. 일본에서 기원한 양고기 요리로, 이름은 몽골 제국의 군주 칭기즈 칸의 일본어식 발음에서 유래하였으나 몽골이나 칭기즈 칸과 직접적인 연관은 전혀 없다.</Typography>
                         </InfoSecondBox>
 
                         <InfoThirdBox >
                             <Box sx={{display :'flex'}}>
-                            <Typography variant="caption" sx={{my:1.5 , mr:4}}>원산지 </Typography>
-                            <Typography variant="caption" sx={{my:1.5}}>Mogolian</Typography>
+                            <Typography variant="body2" sx={{my:1.5 , mr:4}}>원산지 </Typography>
+                            <Typography variant="body2" sx={{my:1.5}}>Mogolian</Typography>
                             </Box>
                             <Box sx={{display :'flex'}}>
-                            <Typography variant="caption" sx={{mb:1.5 , mr:2.5}}>배송정보</Typography>
-                            <Typography variant="caption" sx={{mb:1.5}}>택배 (해외배송)</Typography>
+                            <Typography variant="body2" sx={{mb:1.5 , mr:2.5}}>배송정보</Typography>
+                            <Typography variant="body2" sx={{mb:1.5}}>택배 (해외배송)</Typography>
                             </Box>
                             <Box sx={{display:'flex'}}>
-                            <Typography variant="caption" sx={{mb: 1.5,mr:4}}>배송비 </Typography>
-                            <Typography variant="caption"> {shippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원 (100,000원 이상 무료배송)</Typography>
+                            <Typography variant="body2" sx={{mb: 1.5,mr:4}}>배송비 </Typography>
+                            <Typography variant="body2"> {shippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원 (90,000원 이상 무료배송)</Typography>
                             </Box>
                         </InfoThirdBox>
                         
-                            <Box sx={{borderTop:1 , borderBottom:1 , borderColor:'lightgray'}}>
+                            <Box sx={{borderTop:1 , borderBottom:1 , borderColor:'lightgray',py:1}}>
                                 <Box sx={{display:'flex'}}>
-                                    <Typography variant="caption" sx={{my:1 ,mr:5}}>리뷰</Typography>
-                                    <Typography variant="caption"sx={{my:1}}>(17)</Typography>
+                                    <Typography variant="body2" sx={{my:1 ,mr:5}}>리뷰</Typography>
+                                    <Typography variant="body2"sx={{my:1}}>(17)</Typography>
                                 </Box>
 
                                 <Box sx={{display:'flex'}}>
-                                    <Typography variant="caption" sx={{mb:2, mr:5}}>Q&A</Typography>
-                                    <Typography variant="caption">(2)</Typography>
+                                    <Typography variant="body2" sx={{mb:2, mr:5}}>Q&A</Typography>
+                                    <Typography variant="body2">(2)</Typography>
                                 </Box>
                         </Box>
                         <Box>
@@ -346,7 +346,7 @@ function Detail(){
                             </OrderSeventhBox>
                             
                             <Box>
-                                <Box sx={{display : 'flex', justifyContent:'space-between',alignItems:'center' , mt:2}}>
+                                <Box sx={{display : 'flex', justifyContent:'space-between',alignItems:'center' , mt:1}}>
                                     <Typography variant="body1">결제방식</Typography>
                                     <Box>
                                         <Button sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1, height:"30px", width:'130px', borderColor:'lightgray'}}>장바구니 담기</Button>

@@ -45,6 +45,7 @@ function Manager(){
     const [popup , setPopup] = useState([]);
 
     const [samples , setSamples] = useState([]);
+
     //     {
     //     name : "yellow muffler",
     //     image : "img/sample1.png",
@@ -83,6 +84,11 @@ function Manager(){
 // ]
 //     )
 
+    const [order , setOrder] = useState();
+
+    useEffect( () => {
+
+    } , [])
 
     const [rows, setRows] = useState([{
         order_id: "1",
@@ -193,14 +199,25 @@ function Manager(){
 
     }
 
+    const sortByHeartDesc = (data) => {
+        data.sort(function (a,b) {
+            if(a.likeCount > b.likeCount) return -1;
+            if(a.likeCount === b.likeCount) return 0;
+            if(a.likeCount < b.likeCount) return 1;
+            return 0;
+        });
+    };
+
     useEffect( () => {
         const getAllSample = async () =>{
             const data = await getSamples();
-
+            await sortByHeartDesc(data);
             setSamples(data);
         }
         getAllSample();
+
     } , [samples])
+
     
 
     return(
@@ -277,27 +294,28 @@ function Manager(){
                     <Typography variant="h5" sx={{ mr : 8 , mb:3}}>주문내역 확인</Typography>
                     <ArrowForwardIosIcon sx={{ mr : 8}} fontSize="large"/>
                 </Box>
-                <Box sx={{ gridArea: 'main1', border:0 ,height:"300px" , width:'70%' , minWidth:'550px'}}>
+                <Box sx={{ gridArea: 'main1', border:0 ,height:"300px" , width:'75%' , minWidth:'550px'}}>
                 
                 <TableContainer component={Paper} elevation={5}>
                     <Table sx={{}} size="small" aria-label="a dense table">
                         <TableHead>
                         <TableRow>
-                            <TableCell sx={{ backgroundColor:'lightgray' , border:0,borderRight:1 , borderColor:'darkGray', maxWidth:"30%"}}>주문번호</TableCell>
-                            <TableCell sx={{ backgroundColor:'lightgray' , border:0, borderRight:1 , borderColor:'darkGray', maxWidth:"30%"}}>주문일</TableCell>
-                            <TableCell align="center">주문합계</TableCell>
-                            <TableCell align="center">이름</TableCell>
-                            <TableCell align="center">주문상태</TableCell>
-                            <TableCell align="center">수정/삭제</TableCell>
+                            <TableCell sx={{ backgroundColor:'lightgray' , border:0}} align="center" >주문 번호</TableCell>
+                            <TableCell sx={{ backgroundColor:'lightgray' , border:0}} align="center" >상품 이름</TableCell>
+                            <TableCell sx={{backgroundColor:'lightgray'}} align="center">가격</TableCell>
+                            <TableCell sx={{backgroundColor:'lightgray'}} align="center">공모 인원 현황</TableCell>
+                            <TableCell sx={{backgroundColor:'lightgray'}} align="center">현재 필요 인원</TableCell>
+                            <TableCell sx={{backgroundColor:'lightgray'}} align="center">주문 상태</TableCell>
+                            <TableCell sx={{backgroundColor:'lightgray'}} align="center"></TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
                         {rows.map((row,index) => (
                             <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                            <TableCell component="th" scope="row">
+                            <TableCell align="center" component="th" scope="row">
                                 {row.order_id}
                             </TableCell>
-                            <TableCell>{row.order_date}</TableCell>
+                            <TableCell align="center">{row.order_date}</TableCell>
                             <TableCell align="center">{row.total_cost}</TableCell>
                             <TableCell align="center">{row.member_name}</TableCell>
                             <TableCell align="center">{row.state}</TableCell>
@@ -338,16 +356,16 @@ function Manager(){
                         <Grid key={index} item md={3.5}  sx={{my:5 , minWidth:'300px'}}>
                             <Box component="img" src={sample.imageUrl} sx={{width:"100%" ,height:"300px"}}></Box>
                                 <Box>
-                                <Box sx={{display : 'flex' , justifyContent:"space-between" , alignItems:'center' , mt:1 , mb:0.5 }}>
+                                <Box sx={{display : 'flex' , justifyContent:"space-between" , alignItems:'center' , mt:1 ,mx:2 , mb:0.5 }}>
                                         <Typography variant="body1">{ sample.title.length >= 15 ? sample.title.slice(0,15) + "..." : sample.title }</Typography>
                                         <Box sx={{display:'flex'}}>
-                                            <Button id="승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray' , width:"40px"}}>승인</Button>   
-                                            <Button id="미승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray'}}>미승인</Button>   
+                                            {/* <Button id="승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray' , width:"40px"}}>승인</Button>    */}
+                                            {/* <Button id="미승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray'}}>미승인</Button>    */}
                                         </Box>
                                 </Box>
-                                <Box onClick={ () => onClickDetail(sample)} sx={{display : 'flex' ,justifyContent:'space-between' ,alignItems:'center'  , mt:1}}>
+                                <Box onClick={ () => onClickDetail(sample)} sx={{ mx:2,display : 'flex' ,justifyContent:'space-between' ,alignItems:'center'  , mt:1}}>
                                     <Box sx={{display:'flex' , alignItems:'center'}}>
-                                        <Typography variant="caption" sx={{color:'gray'}}>상세보기 </Typography>
+                                        <Typography variant="body2" sx={{color:'gray'}}>상세보기 </Typography>
                                         <ArrowForwardIosIcon sx={{fontSize:'13px' , mb:0.3 , ml:1 , color:'gray'}}/>
                                     </Box>
                                     <Box sx={{display : 'flex' , alignItems:'center'}}>

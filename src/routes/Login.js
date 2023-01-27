@@ -14,7 +14,7 @@ const StyledButton = styled(Button)({
     
     '&:hover': {
         opacity:'0.6',
-        backgroundColor:"black" ,
+        backgroundColor:"#9D1CE5" ,
     },
 })
 
@@ -27,10 +27,10 @@ const StyledTextField = styled(TextField)({
             height: '40px',
           },
           '&:hover fieldset': {
-            borderColor: 'lightGray',
+            borderColor: '#9D1CE5',
           },
           '&.Mui-focused fieldset': {
-            borderColor: 'gray',
+            borderColor: '#9D1CE5',
           },
     },
 
