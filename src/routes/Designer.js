@@ -1,13 +1,13 @@
 import { Box } from "@mui/system";
 import React from "react";
 
-function List(){
+function Designer(){
 
     return(
         <Box>
-            List
+            Designer
         </Box>
     );
 }
 
-export default List;
+export default Designer;

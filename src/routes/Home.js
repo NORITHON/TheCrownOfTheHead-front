@@ -10,7 +10,7 @@ const ImageBox = styled(Box)({
     display:'flex' , 
     justifyContent:'center' , 
     // border:"1px solid black" ,
-    margin:'50px auto',
+    margin:'100px auto',
     // marginBottom : '200px'
 })
 
@@ -78,11 +78,10 @@ function Home(){
             <ImageBox elevation={10}>
                 <Box component="img" src="img/yang.png" sx={{ width: "100%"}}></Box>
             </ImageBox>
-        <Grid container sx={{ paddingX:10 , marginX:'auto', justifyContent:'space-around'}}>
+
+        <Grid container sx={{ paddingX:10,justifyContent:'space-between'}}>
             {items.map( (item , index) => (
-                
-                
-                <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px" , marginY:'0px' }}>
+                <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px" }}>
                     <Link to="./detail" style={{textDecoration:'inherit' , color:'inherit'}} state={{
                         name : item.name,
                         price : item.price,

@@ -71,8 +71,8 @@ function Header(){
                 <Link to="./list" style={{ textDecoration:'inherit' , color:'inherit'}}>
                     <StyledButton>List</StyledButton>
                 </Link>
-                <Link to="./detail" style={{ textDecoration:'inherit' , color:'inherit'}}>
-                    <StyledButton>Detail</StyledButton>
+                <Link to="./designer" style={{ textDecoration:'inherit' , color:'inherit'}}>
+                    <StyledButton>Designer</StyledButton>
                 </Link>
                 <Link to="./form" style={{ textDecoration:'inherit' , color:'inherit'}}>
                     <StyledButton>Form</StyledButton>

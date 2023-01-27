@@ -42,10 +42,10 @@ const StyledTextField = styled(TextField)({
 })
 
 const InfoPartBox = styled(Box)({
-    gridArea : 'infoPart'  ,
+    gridArea : 'infoPart',
     display:'flex' , 
     flexDirection:'column', 
-    justifyContent:' space-around' ,
+    justifyContent:'space-between' ,
     height:'100%'
 })
 
@@ -68,17 +68,18 @@ const ImagePartBox = styled(Box)({
     height:"650px"
 })
 const OrderPartBox = styled(Box)({
-    gridArea: 'orderPart'
+    gridArea: 'orderPart',
+    display:'flex' ,
+    flexDirection:'column',
+    justifyContent:'space-between' ,
 })
+
 const OrderFirstBox = styled(Box)({
-    display : 'flex' ,
-    justifyContent:'space-between' , 
-    alignItems:'center',
-    borderTop:"1px solid" , 
-    borderColor:'lightgray' , 
-    paddingTop:"10px",
-    marginTop:'30px'
+    display:'flex' ,
+    flexDirection:'column',
+    // justifyContent:'space-between' ,
 })
+
 const OrderSecondBox = styled(Box)({
     display : 'flex' , 
     justifyContent:'space-between' , 
@@ -100,6 +101,15 @@ const OrderFifthBox = styled(Box)({
     justifyContent:'space-between'
 })
 const OrderSixthBox = styled(Box)({
+    display : 'flex' ,
+    justifyContent:'space-between' , 
+    alignItems:'center',
+    borderTop:"1px solid" , 
+    borderColor:'lightgray' , 
+    paddingTop:"10px",
+    marginTop:'30px'
+})
+const OrderSeventhBox = styled(Box)({
     borderTop:"1px solid" , 
     borderBottom:"1px solid" , 
     borderColor:'lightgray' , 
@@ -140,16 +150,21 @@ function Detail(){
         if(num <= 0 ) setTotalCost(0);
         else setTotalCost( num * parseInt(clothes.price));
     } , [num])
+
+    useEffect( () => {
+        window.scrollTo(0, 0);
+    } , [])
     
 
     return(
         <Box>
             <Box sx={{
-                paddingY : "100px",
+                marginY : "100px",
+                
                 display: "grid",
                 gap: "2rem",
                 width:"90%",
-                margin: "auto",
+                marginX: "auto",
                 gridTemplateAreas: `"infoPart imagePart orderPart"`,
                 gridTemplateColumns: "280px 1fr 320px"                 
             }}>
@@ -210,9 +225,9 @@ function Detail(){
                         <Box component="img" src={clothes.image} width="100%" height="100%"></Box>
                     </ImagePartBox>
                     <OrderPartBox>
-                        <form>
+                       
                             
-                            <Box sx={{display:'flex' , flexDirection:'column'}}>
+                            <OrderFirstBox>
                                 <Box sx={{ display:'flex' , alignItems:'center'}}>
                                 <CalendarTodayIcon fontSize="small" sx={{mb:0.3}} /><Typography variant="body1" sx={{ml:1}}>
                                     결제 및 발송 예정일
@@ -222,7 +237,7 @@ function Detail(){
                                 <Typography variant="caption" sx={{ml:0.5 }}>1차 결제일: 2023년 2월 3일, 예상 발송일: 2023년 2월 16일</Typography>
                                 <Typography variant="caption" sx={{ml:0.5,mb:1 }}>2차 결제일: 2023년 2월 20일, 예상 발송일: 2023년 2월 28일</Typography>
                                 
-                            </Box>
+                            </OrderFirstBox>
                             <OrderSecondBox>
                                     <Typography variant="body2">배송지 입력</Typography>
                                     <Box sx={{display:'flex' , alignItems:'center'}}>
@@ -249,16 +264,16 @@ function Detail(){
                                 </Box>
                             </OrderFifthBox>
 
-                            <OrderFirstBox>
+                            <OrderSixthBox>
                                 <Typography variant="body2">수량</Typography>
                                 <Box sx={{display : 'flex' , alignItems:'center'}}>
                                     <Button onClick={onClick} id="-" sx={{color:'black' }}><RemoveIcon sx={{fontSize:'15px'}}/></Button>
                                     <Box >{num}</Box>
                                     <Button onClick={onClick} id="+" sx={{color:'black'}}><AddIcon sx={{fontSize:'15px'}}/></Button>
                                 </Box>
-                            </OrderFirstBox>
+                            </OrderSixthBox>
 
-                            <OrderSixthBox>
+                            <OrderSeventhBox>
                                 <Box sx={{display : 'flex' ,my: 2 , justifyContent:'space-between' }}>
                                     <Typography variant="body2">총 상품금액</Typography>
                                     <Typography variant="body2">{totalCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Typography>
@@ -275,7 +290,7 @@ function Detail(){
                                 </Box>
 
                                 
-                            </OrderSixthBox>
+                            </OrderSeventhBox>
                             
                             <Box>
                                 <Box sx={{display : 'flex', justifyContent:'space-between',alignItems:'center' , mt:2}}>
@@ -291,7 +306,7 @@ function Detail(){
                                 </Box>
                             </Box>
                         
-                        </form>
+                    
                     </OrderPartBox>
             </Box>
 

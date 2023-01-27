@@ -1,13 +1,28 @@
-import { Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BuildIcon from '@mui/icons-material/Build';
 import styled from "styled-components";
+import CloseIcon from '@mui/icons-material/Close';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 
-
-
+const StyledTextField = styled(TextField)({
+    ' .MuiOutlinedInput-root': {
+        '& fieldset': {
+            margin:'auto 0',
+            borderColor: 'lightGray',
+            height: '40px',
+          },
+          '&:hover fieldset': {
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: 'gray',
+          },
+    },
+    
+})
 
 function Manager(){
 
@@ -18,30 +33,36 @@ function Manager(){
     const [samples , setSamples] = useState([{
         name : "yellow muffler",
         image : "img/sample1.png",
+        content: "This is very good!"
     },
     {
         name : "white baraclaba",
         image : "img/sample2.png",
+        content: "This is very good!"
     },
     
     {
         name : "cashmere knit",
         image : "img/sample3.png",
+        content: "This is very good!"
     },
     
     {
         name : "shirt-sleeved T",
         image : "img/sample4.png",
+        content: "This is very good!"
     },
     
     {
         name : "short-sleeved T",
         image : "img/sample4.png",
+        content: "This is very good!"
     },
 
     {
         name : "short-sleeved T",
         image : "img/sample4.png",
+        content: "This is very good!"
     },
     
 ])
@@ -105,19 +126,82 @@ function Manager(){
         }
     }
 
+    const scrollRef = useRef();
+
     const onClickDetail = (sample) =>{
         setPopup(sample);
         setIsPopup(true);
+        setPopupName(sample.name);
+        window.scrollTo(0, 0);
     }
+    const onClickClosePopup = () => {
+        setIsPopup(false);
+    }
+
+
+    const [popupName, setPopupName] = useState("");
+
+    const onChangePopupName = (e) => {
+        setPopupName(e.target.value);
+    }
+
+    
 
     return(
         
 
-            <Box>
+            <Box ref={scrollRef}>
                 
         {isPopup ? <Box>
-            <Box>
-                
+            <Box sx={{display : 'flex' , pt:3, justifyContent:'center' , width:'100%' , height:'800px' , backgroundColor:'gray'}}>
+                <Paper sx={{width : "50%" , height:'83%' , borderRadius:'5%' , pl : 7 , pr:3 , pt:3}}>
+                    <Box sx={{display:'flex' , justifyContent:'right'}}>
+                        <CloseIcon onClick={onClickClosePopup} fontSize="large"/>
+                    </Box>
+                    <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start' , pt:2}}>
+                        <Typography variant="h4">About {popup.name}</Typography>
+
+                        <Box sx={{display : 'flex' , width:'100%' ,height: "250px" ,borderBottom:2 , borderColor:'lightgray' , py:3 }}>
+                            <Box component="img" src={popup.image} width="40%" sx={{ mr:2}}></Box>
+                            <Box >
+                                <Box sx={{display:'flex' , alignItems:'center'}}>
+                                <ArticleOutlinedIcon sx={{mr:1}} />
+                                <Typography variant="h5">Product Information</Typography>
+                                </Box>
+                                <Typography sx={{mt:2}}>{popup.content}</Typography>
+                            </Box>
+                        </Box>
+                        <Box sx={{display : 'flex' , justifyContent:'space-between' , alignItems:'center',width:'100%', pt:2 }}>
+                            <Typography variant="body1">제품명</Typography>
+                            <StyledTextField onChange={onChangePopupName} value={popupName}/>
+                            {/* <Typography variant="body1">{popup.rawMaterialCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Typography> */}
+                        </Box>
+
+                        <Box sx={{display : 'flex' , justifyContent:'space-between' , alignItems:'center',width:'100%' }}>
+                            <Typography variant="body1">원자재 비용</Typography>
+                            <StyledTextField />
+                            {/* <Typography variant="body1">{popup.rawMaterialCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Typography> */}
+                        </Box>
+
+                        <Box sx={{display : 'flex' , justifyContent:'space-between', width:'100%', alignItems:'center'}}>
+                            <Typography variant="body1">공장 인건비</Typography>
+                            {/* <Typography variant="body1"></Typography> */}
+                            <StyledTextField />
+                        </Box>
+
+                        <Box sx={{display : 'flex' , justifyContent:'space-between', alignItems:'center', width:'100%' , pr:2}}>
+                            <Typography>공모 모집 인원</Typography>
+                            <StyledTextField />
+                            {/* <Typography>{popup.distributionCost}</Typography> */}
+                        </Box>
+
+                        <Box sx={{display:'flex' , justifyContent:'end' , width:'61.5%'}}>
+                            <Typography sx={{mr: 3}}></Typography>
+                            
+                            {/* <Typography>{popup.totalCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Typography> */}
+                        </Box>
+                    </Box>
+                </Paper>
             </Box>
         </Box> :
             <Box>
