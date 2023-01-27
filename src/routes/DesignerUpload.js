@@ -1,9 +1,11 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, {useState} from "react";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from "styled-components";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+import { designer } from './Login.js';
+import {createSample} from "../apis/apis";
 
 const StyledButton = styled(Button)({
     color:'white', 
@@ -54,6 +56,31 @@ const StyledTextField2 = styled(TextField)({
 
 function DesignerUpload(){
 
+    const [title , setTitle] = useState("");
+    const [content, setContent] = useState("");
+
+    const onChange = (e) => {
+        if(e.target.id==="title"){
+            setTitle(e.target.value);
+        }else if(e.target.id ==="content"){
+            setContent(e.target.value);
+        }
+    }
+
+    const onSubmit = async () => {
+        const data ={
+            title : title,
+            imageUrl : "img/sample1.png",
+            content : content,
+            designerId : designer.id
+        }
+
+        createSample(data);
+
+        setTitle("");
+        setContent("");
+
+    }
 
     return(
         <Box>
@@ -70,15 +97,15 @@ function DesignerUpload(){
                     <FileUploadIcon sx={{mx:3 , marginY:'auto'}} />
                     <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start' , width:'50%' , border:0 , justifyContent:'end'}}>
                         <Typography variant="body1" sx={{fontWeight:'bold'}}>디자인 이름</Typography>
-                        <StyledTextField1 sx={{width:'100%'}}/>
+                        <StyledTextField1 id="title" value={title} onChange={onChange} sx={{width:'100%'}}/>
                         <Typography variant="body1" sx={{my:1 , fontWeight:'bold'}}>상품 설명</Typography>
-                        <StyledTextField2 sx={{width:'100%'}} multiline rows={10}/>
+                        <StyledTextField2 id="content" value={content} onChange={onChange} sx={{width:'100%'}} multiline rows={10}/>
                     </Box> 
 
 
             </Box>
             <Box sx={{width:'70%' , marginX:'auto' , display:'flex' , justifyContent:'right'}}>
-                <StyledButton sx={{mt:2}}> 상품 올리기 </StyledButton>
+                <StyledButton onClick={onSubmit} sx={{mt:2}}> 상품 올리기 </StyledButton>
             </Box>
         </Box>
     );
