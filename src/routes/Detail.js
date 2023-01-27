@@ -7,6 +7,9 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import styled from "@emotion/styled";
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import {createFund} from "../apis/apis";
+import {client} from "./Login";
+
 
 const StyledButton = styled(Button)({
     color:'white', 
@@ -139,11 +142,11 @@ function Detail(){
     }
 
     const clothes = {
+        id : location.state?.id,
         name : location.state?.name,
         price : location.state?.price,
         image : location.state?.image,
         content : location.state?.content,
-        from : location.state?.from
     }
 
     useEffect( () => {
@@ -154,7 +157,57 @@ function Detail(){
     useEffect( () => {
         window.scrollTo(0, 0);
     } , [])
-    
+
+
+
+    const [address1 , setAddress1] = useState("");
+    const [address2 , setAddress2] = useState("");
+    const [address3 , setAddress3] = useState("");
+
+    const [phone1 , setPhone1] = useState("");
+    const [phone2 , setPhone2] = useState("");
+    const [phone3 , setPhone3] = useState("");
+
+    const onChangeCollection = (e) => {
+        const { target : { value }} = e;
+        const { target : { id }} = e;
+
+        if(id === "address1"){
+            setAddress1(value);
+        }else if(id==="address2"){
+            setAddress2(value);
+        }else if(id==="address3"){
+            setAddress3(value);
+        }else if(id ==="phone1"){
+            setPhone1(value);
+        }else if(id ==="phone2"){
+            setPhone2(value);
+        }else if(id ==="phone3"){
+            setPhone3(value);
+        }
+    }
+
+    const onClickFund = async () =>{
+        const data = {
+            address : address1 + address2 + address3,
+            size : "M",
+            count : num,
+            phoneNumber : phone1+ "-" +phone2 +"-" +phone3,
+            memberId : parseInt(client.id) ,
+            itemId : clothes.id
+        }
+
+        createFund(data);
+
+        setAddress1("");
+        setAddress2("");
+        setAddress3("");
+        setPhone1("");
+        setPhone2("");
+        setPhone3("");
+    }
+
+
 
     return(
         <Box>
@@ -181,7 +234,7 @@ function Detail(){
                         <InfoThirdBox >
                             <Box sx={{display :'flex'}}>
                             <Typography variant="caption" sx={{my:1.5 , mr:4}}>원산지 </Typography>
-                            <Typography variant="caption" sx={{my:1.5}}>{clothes.from}</Typography>
+                            <Typography variant="caption" sx={{my:1.5}}>Mogolian</Typography>
                             </Box>
                             <Box sx={{display :'flex'}}>
                             <Typography variant="caption" sx={{mb:1.5 , mr:2.5}}>배송정보</Typography>
@@ -241,26 +294,26 @@ function Detail(){
                             <OrderSecondBox>
                                     <Typography variant="body2">배송지 입력</Typography>
                                     <Box sx={{display:'flex' , alignItems:'center'}}>
-                                        <StyledTextField sx={{width : '120px' , mr:2}}></StyledTextField>
+                                        <StyledTextField id="address1" value={address1} onChange={onChangeCollection} sx={{width : '120px' , mr:2}}></StyledTextField>
                                         <Button sx={{backgroundColor:'lightGray', opacity:'0.8' , color:'black'}}>우편번호 검색</Button>
                                     </Box>
                             </OrderSecondBox>
 
                             <OrderThirdBox > 
-                                <StyledTextField sx={{float:'right'}}/> 
+                                <StyledTextField id="address2" value={address2} onChange={onChangeCollection} sx={{float:'right'}}/>
                             </OrderThirdBox>
 
                             <OrderFourthBox>
                                 <Typography variant="body2">상세주소</Typography>
-                                <StyledTextField/>
+                                <StyledTextField id="address3" value={address3} onChange={onChangeCollection}/>
                             </OrderFourthBox>
 
                             <OrderFifthBox>
                                 <Typography variant="body2">연락처</Typography>
                                 <Box>
-                                <StyledTextField sx={{width:'60px' , mr:1}}/>
-                                <StyledTextField sx={{width:'80px', mr:1}}/>
-                                <StyledTextField sx={{width:'80px'}}/>
+                                <StyledTextField id="phone1" value={phone1} onChange={onChangeCollection} sx={{width:'60px' , mr:1}}/>
+                                <StyledTextField id="phone2" value={phone2} onChange={onChangeCollection} sx={{width:'80px', mr:1}}/>
+                                <StyledTextField id="phone3" value={phone3} onChange={onChangeCollection} sx={{width:'80px'}}/>
                                 </Box>
                             </OrderFifthBox>
 
@@ -302,7 +355,7 @@ function Detail(){
                                 </Box>
 
                                 <Box sx={{display:'flex' , justifyContent:'end'}}>
-                                    <StyledButton>펀딩하기</StyledButton>
+                                    <StyledButton onClick={onClickFund}>펀딩하기</StyledButton>
                                 </Box>
                             </Box>
                         
