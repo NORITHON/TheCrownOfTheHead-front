@@ -8,13 +8,13 @@ import {createClient, createDesigner, getClients, getDesigners} from "../apis/ap
 const StyledButton = styled(Button)({
     color:'white', 
     width:'400px' ,
-    backgroundColor:"green" ,
+    backgroundColor:"black" ,
     marginTop: "20px",
     marginBottom: "20px",
     
     '&:hover': {
         opacity:'0.6',
-        backgroundColor:"green" ,
+        backgroundColor:"black" ,
     },
 })
 
@@ -27,10 +27,10 @@ const StyledTextField = styled(TextField)({
             height: '40px',
           },
           '&:hover fieldset': {
-            borderColor: 'green',
+            borderColor: 'lightGray',
           },
           '&.Mui-focused fieldset': {
-            borderColor: 'green',
+            borderColor: 'gray',
           },
     },
 
@@ -80,7 +80,6 @@ function Login(){
                 password : password
             }
 
-
            client = await getClients(data);
 
             console.log(client.id);
@@ -104,31 +103,28 @@ function Login(){
     }
     return(
         <Box sx={{
-            display: "grid",
+            display: 'flex',
+            flexDirection:'column',
+            alignItems:'center',
             gap: "0",
-            width:"100%",
-            height:"100%",
-            margin: "70px auto",
-            gridTemplateAreas: `"imagePart loginPart"`,
-
-            gridTemplateColumns: {md : "3fr 4fr" , xs: '0fr 1fr'}
+            width:"50%",
+            height:"50%",
+            margin: "150px auto",
            }}>
-                <Box sx={{ gridArea: 'imagePart' , border:0 ,display:{md : 'block' , xs:'none'}}}>
-                    <Box component="img" src="img/login.png" width="100%" height ="700px" ></Box>
+                <Box sx={{border:0 ,display:{md : 'block' , xs:'none'}}}>
+                    <Box component="img" src="img/lastlogin.png" width="400px"></Box>
                 </Box>
-                <Box sx={{height : "700px" , gridArea: 'loginPart', border:0 , display:'flex' , flexDirection:'column' , alignItems:'center' , justifyContent:'center'}}>
-                    
-                        <Typography variant="h3" sx={{mb:5}}>Login</Typography>
+                <Box sx={{ gridArea: 'loginPart', border:0 , display:'flex' , flexDirection:'column' , alignItems:'center' , justifyContent:'center', mt:2}}>
                         
-                        <StyledTextField sx={{width:'400px'}} id="user" value={user} onChange={onChange} placeholder="Email address"/>
-                        <StyledTextField sx={{width:'400px'}} id="password" value={password} onChange={onChange}placeholder="Password"/>
+                        <StyledTextField sx={{width:'400px'}} id="user" value={user} onChange={onChange} placeholder="이메일"/>
+                        <StyledTextField sx={{width:'400px'}} id="password" value={password} onChange={onChange}placeholder="비밀번호"/>
 
-                        <StyledButton id="1" onClick={onClick}>Sign up as designer</StyledButton>
+                        <StyledButton id="1" onClick={onClick} sx={{mt:2}}>Sign up as designer</StyledButton>
                     <StyledButton id="2" onClick={onClick}>Sign up as client</StyledButton>
                     <StyledButton id="3" onClick={onClick}>Log in as client</StyledButton>
                         <StyledButton id="4" onClick={onClick}>Log in as designer</StyledButton>
 
-                        <Typography variant="caption" sx={{color:'green', textDecoration:'underline' }}>Already have an account?</Typography>
+                        <Typography variant="caption" sx={{color:'lightgray' , mt:2}}>아이디 찾기&nbsp;&nbsp; ㅣ &nbsp;&nbsp;비밀번호 찾기</Typography>
                     
                 </Box>
         </Box>

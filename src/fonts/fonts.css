@@ -9,3 +9,9 @@
     /* font-weight: 50; */
     src: url("./BarlowCondensed-Medium.ttf") format("truetype");
 }
+
+@font-face {
+    font-family: "Pinterest-Logo-Font-55Rg";
+    /* font-weight: 50; */
+    src: url("./Pinterest-Logo-Font-55Rg.ttf") format("truetype");
+}
