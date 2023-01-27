@@ -12,6 +12,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Designer from "../routes/Designer";
 import Like from "../routes/Like";
+import DesignerUpload from "../routes/DesignerUpload";
 
 function App() {
   return (
@@ -23,8 +24,8 @@ function App() {
         <Route path="/like" element={<Like />}/>
         <Route path="/designer" element={ <Designer />} />
         <Route path="/login" element={ <Login />} />
-        <Route path="/manage" element={ <Manager />} />
-        
+        <Route path="/manage" element={ <Manager />} />  
+        <Route path="/upload" element={<DesignerUpload />} />    
         <Route path="*" element={<Page404 />} />
         
       </Routes>
