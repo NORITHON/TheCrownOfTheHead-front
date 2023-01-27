@@ -15,3 +15,9 @@
     /* font-weight: 50; */
     src: url("./Pinterest-Logo-Font-55Rg.ttf") format("truetype");
 }
+
+@font-face {
+    font-family: "Lovera";
+    /* font-weight: 50; */
+    src: url("./Lovera.ttf") format("truetype");
+}

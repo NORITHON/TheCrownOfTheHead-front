@@ -1,20 +1,22 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useCallback, useRef, useState } from "react";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import styled from "styled-components";
+
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { designer } from './Login.js';
 import {createSample} from "../apis/apis";
+import styled from "@emotion/styled";
 
 const StyledButton = styled(Button)({
+    marginTop:"10px" ,
+    borderRadius:0,
     color:'white', 
     width:'100px' ,
-    backgroundColor:"gray" ,
     marginBottom: "30px",
     height:"30px",
     borderRadius:0,
-    
+    backgroundColor:'#9D1CE5',
     '&:hover': {
         backgroundColor:"gray" ,
     },
@@ -29,9 +31,10 @@ const StyledTextField1 = styled(TextField)({
             height: '40px',
           },
           '&:hover fieldset': {
+            borderColor : '#9D1CE5'
           },
           '&.Mui-focused fieldset': {
-            borderColor: 'gray',
+            borderColor:  '#9D1CE5',
           },
     },
 
@@ -46,9 +49,10 @@ const StyledTextField2 = styled(TextField)({
             height: '265px',
           },
           '&:hover fieldset': {
+            borderColor : '#9D1CE5'
           },
           '&.Mui-focused fieldset': {
-            borderColor: 'gray',
+            borderColor: '#9D1CE5',
           },
     },
 
@@ -112,34 +116,37 @@ const inputRef = useRef(null);
 
     return(
         <Box>
-            <Box sx={{display:'flex' , alignItems:'center', justifyContent:'center' , mt:10 , width:'70%', marginX:'auto' , borderBottom:3 , borderColor:'lightgray' , pb:2 , mb:13}}>
-                <Typography sx={{ color: 'gray'}}>상품 카테고리 선택</Typography>
-                <ArrowForwardIosIcon fontSize="small" sx={{mx:4 , color:'gray'}}/>
-                <Typography>상품 디자인 업로드</Typography>
+            <Box sx={{display:'flex' , alignItems:'center', mt:10 , width:'70%', marginX:'auto' , borderBottom:1.5, borderColor:'black', pb:1  , mb:13}}>
+                <Typography sx={{ fontFamily:'Lovera' , fontSize:'40px'}}>Upload Your work</Typography>
+                
             </Box>
-            <Box sx={{width:'70%' , marginX:'auto' , display:'flex'}}>
+            <Box sx={{width:'70%' , marginX:'auto', display:'flex'}}>
 
-                    <Box component="img" src={leftImage} sx={{width:'500px' , height:'400px' , border:2 , borderColor:'lightgray'}}>
+                    <Box component="img" src={leftImage} sx={{width:'500px' , height:'400px' , border:2 , borderColor:'lightgray', backgroundColor:'lightgray' }}>
                         
                     </Box>
-                        <FileUploadIcon onClick={onUploadImageButtonClick} sx={{mx:3 , marginY:'auto' , border:1,borderRadius:"50%",color:"#9D1CE5" , p:2}} />
+                    <Box sx={{display: 'flex', width:"300px" , flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
+                        <Paper elevation={3} sx={{width:'55px' , height:'55px' , borderRadius:'50%'}}><FileUploadIcon onClick={onUploadImageButtonClick} sx={{ border:0,borderRadius:"50%", p:2}} /></Paper>
+                        <Typography sx={{mt:2}}>이미지 업로드</Typography>
+                    </Box>
                     <Box>
                     <input style={{display:'none'}} type="file" accept="image/*" ref={inputRef} onChange={onUploadImage} />
+                    
                     {/* <Button label="이미지 업로드" onClick={onUploadImageButtonClick} /> */}
                     </Box>
 
 
-                    <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start' , width:'50%' , border:0 , justifyContent:'end'}}>
-                        <Typography variant="body1" sx={{fontWeight:'bold'}}>디자인 이름</Typography>
+                    <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start' , width:'50%' , border:0 , justifyContent:'space-between'}}>
+                        <Typography variant="h6" >TITLE</Typography>
                         <StyledTextField1 id="title" value={title} onChange={onChange} sx={{width:'100%'}}/>
-                        <Typography variant="body1" sx={{my:1 , fontWeight:'bold'}}>상품 설명</Typography>
+                        <Typography variant="h6" sx={{my:1 }}>DESCRIPTION</Typography>
                         <StyledTextField2 id="content" value={content} onChange={onChange} sx={{width:'100%'}} multiline rows={10}/>
                     </Box> 
 
 
             </Box>
             <Box sx={{width:'70%' , marginX:'auto' , display:'flex' , justifyContent:'right'}}>
-                <StyledButton sx={{mt:2 ,color:'inherit', backgroundColor:'inherit'}}> 상품 올리기 </StyledButton>
+                <StyledButton > UPLOAD </StyledButton>
             </Box>
         </Box>
     );
