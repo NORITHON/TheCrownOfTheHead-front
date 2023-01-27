@@ -7,11 +7,11 @@ import {getItems} from "../apis/apis";
 
 const ImageBox = styled(Box)({
     width: '100%' , 
-    height: '400px' , 
+    height: '100%',
     display:'flex' , 
     justifyContent:'center' , 
     // border:"1px solid black" ,
-    margin:'100px auto',
+    margin:'40px auto',
     // marginBottom : '200px'
 })
 
@@ -88,12 +88,12 @@ function Home(){
     return(
         <Box>
             <ImageBox elevation={10}>
-                <Box component="img" src="img/yang.png" sx={{ width: "100%"}}></Box>
+                <Box component="img" src="img/logo3.png" width="100%"></Box>
             </ImageBox>
 
         <Grid container sx={{ paddingX:10,justifyContent:'space-between'}}>
             {items.map( (item , index) => (
-                <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px" }}>
+                <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px", height:'350px' }}>
                     <Link to="./detail" style={{textDecoration:'inherit' , color:'inherit'}} state={{
                         id : item.id,
                         name : item.name,
@@ -101,10 +101,19 @@ function Home(){
                         image : item.sample.imageUrl,
                         content : item.sample.content,
                     }}>
-                <Box elevation={5} sx={{width:'100%' , height:'350px' , display:'flex' , flexDirection:'column' ,alignItems:'center' , mt : 10}}>
-                    <Box component="img" src={item.sample.imageUrl} sx={{width:"300px" , height:"300px" }}></Box>
-                    <Typography variant="caption" color="gray" >{item.name}</Typography>
-                    <Typography variant="body2" >{item.price}</Typography>
+                <Box elevation={5} sx={{width:'100%', display:'flex' , flexDirection:'column'  , mt : 10}}>
+                    
+                    <Box component="img" src={item.sample.imageUrl} sx={{width:"300px" , height:"300px" , display:'flex' , justifyContent:'start' }}></Box>  
+                    
+                    <Box sx={{display:'flex', flexDirection:'column'}}>
+                        <Typography variant="body1" color="gray">{item.name}</Typography>
+                        <Box>
+                        <Typography variant="body2" >{item.price}</Typography>
+                        </Box>
+                    <Box>
+                       
+                        </Box>
+                    </Box>
                 </Box>
                     </Link>
             </Grid>
