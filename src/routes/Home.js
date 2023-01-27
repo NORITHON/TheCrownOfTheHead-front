@@ -91,9 +91,9 @@ function Home(){
                 <Box component="img" src="img/logo3.png" width="100%"></Box>
             </ImageBox>
 
-        <Grid container sx={{ paddingX:10,justifyContent:'space-between'}}>
+        <Grid container sx={{ paddingX:10}}>
             {items.map( (item , index) => (
-                <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px", height:'350px' }}>
+                <Grid item key={index} md={3} sm={3} xs={6} style={{ minWidth:"300px", height:'400px',marginTop:"70px" }}>
                     <Link to="./detail" style={{textDecoration:'inherit' , color:'inherit'}} state={{
                         id : item.id,
                         name : item.name,
@@ -101,15 +101,20 @@ function Home(){
                         image : item.sample.imageUrl,
                         content : item.sample.content,
                     }}>
-                <Box elevation={5} sx={{width:'100%', display:'flex' , flexDirection:'column'  , mt : 10}}>
+                <Box sx={{width:'300px', display:'flex' , flexDirection:'column' , marginX:'auto'  }}>
                     
-                    <Box component="img" src={item.sample.imageUrl} sx={{width:"300px" , height:"300px" , display:'flex' , justifyContent:'start' }}></Box>  
+                    <Box component="img" src={item.sample.imageUrl} sx={{ height:"300px" , display:'flex' , justifyContent:'start' }}></Box>  
                     
-                    <Box sx={{display:'flex', flexDirection:'column'}}>
+                    <Box sx={{display:'flex', flexDirection:'column' , mt:3 }}>
                         <Typography variant="body1" color="gray">{item.name}</Typography>
-                        <Box>
-                        <Typography variant="body2" >{item.price}</Typography>
+                        <Box sx={{display:'flex' , justifyContent:'space-between', alignItems:'center',mt:1}}>
+                            <Box sx ={{display:'flex' , alignItems:'center'}}>
+                            <Typography variant="body2" sx={{color:"#9D1CE5" , mr:1}}>{ Math.round((item.count * 100)/(item.count + item.stockQuantity))}% 달성</Typography>
+                            <Typography variant="body2" >{item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} 원</Typography>
                         </Box>
+                        <Typography variant="body2" sx={{color:'gray'}}>10일 남음</Typography>
+                        </Box>
+                        
                     <Box>
                        
                         </Box>

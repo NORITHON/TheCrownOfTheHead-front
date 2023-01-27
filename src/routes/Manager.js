@@ -8,6 +8,7 @@ import styled from "styled-components";
 import CloseIcon from '@mui/icons-material/Close';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import {createItem, getSamples} from "../apis/apis";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const StyledTextField = styled(TextField)({
     ' .MuiOutlinedInput-root': {
@@ -327,26 +328,34 @@ function Manager(){
                         <ArrowForwardIosIcon fontSize="large" sx={{ mr : 8}}/>
             </Box>
 
-            <Box sx={{gridArea : 'main2' , border: 0 , width:'70%' , minWidth:'550px'}}>
-                <Box sx={{borderBottom:2 , borderColor:"lightgray" , pb:1 , mb:5}}>
-                    <Typography variant="body1">상품명</Typography>
+            <Box sx={{gridArea : 'main2' , border: 0 , width:'75%' , minWidth:'550px'}}>
+                <Box sx={{borderBottom:2 , borderColor:"lightgray" , pb:1}}>
+                    <Typography variant="h6">상품명</Typography>
                 </Box>
                 
-                <Grid container sx={{justifyContent:'space-between'}}>
+                <Grid container sx={{ justifyContent:'space-between' , alignItems:'center' }}>
                 {samples.map( (sample, index) => (
-                        <Grid key={index} item md={3.5}  sx={{mb:5}}>
-                            <Box component="img" src={sample.imageUrl} sx={{width:"100%" ,maxHeight:"350px"}}></Box>
-                            <Box sx={{display : 'flex' , justifyContent:"space-between" , alignItems:'center' , mt:1 , mb:0.5}}>
-                                <Typography variant="body1">{sample.title}</Typography>
+                        <Grid key={index} item md={3.5}  sx={{my:5 , minWidth:'300px'}}>
+                            <Box component="img" src={sample.imageUrl} sx={{width:"100%" ,height:"300px"}}></Box>
                                 <Box>
-                                <Button id="승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray'}}>승인</Button>   
-                                <Button id="미승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray'}}>미승인</Button>   
+                                <Box sx={{display : 'flex' , justifyContent:"space-between" , alignItems:'center' , mt:1 , mb:0.5 }}>
+                                        <Typography variant="body1">{ sample.title.length >= 15 ? sample.title.slice(0,15) + "..." : sample.title }</Typography>
+                                        <Box sx={{display:'flex'}}>
+                                            <Button id="승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray' , width:"40px"}}>승인</Button>   
+                                            <Button id="미승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray'}}>미승인</Button>   
+                                        </Box>
                                 </Box>
-                            </Box>
-                            <Box onClick={ () => onClickDetail(sample)} sx={{display : 'flex' , alignItems:'center'}}>
-                            <Typography variant="caption" sx={{color:'gray'}}>상세보기 </Typography>
-                            <ArrowForwardIosIcon sx={{fontSize:'13px' , mb:0.3 , ml:1 , color:'gray'}}/>
-                            </Box>
+                                <Box onClick={ () => onClickDetail(sample)} sx={{display : 'flex' ,justifyContent:'space-between' ,alignItems:'center'  , mt:1}}>
+                                    <Box sx={{display:'flex' , alignItems:'center'}}>
+                                        <Typography variant="caption" sx={{color:'gray'}}>상세보기 </Typography>
+                                        <ArrowForwardIosIcon sx={{fontSize:'13px' , mb:0.3 , ml:1 , color:'gray'}}/>
+                                    </Box>
+                                    <Box sx={{display : 'flex' , alignItems:'center'}}>
+                                        <FavoriteBorderIcon sx={{fontSize:'20px' , mr:1 , color:'red'}} />
+                                        <Typography sx={{color:'red'}}>{sample.likeCount}</Typography>
+                                    </Box>
+                                </Box>
+                                </Box>
                         </Grid>
                     ))}
                     

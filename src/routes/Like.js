@@ -89,11 +89,15 @@ function Like(){
 
 
     return(
-        <Box>
-        <Grid container sx={{ paddingX:10, justifyContent:'space-between' , paddingBottom:'100px'}}>
+        <Box sx={{paddingX:10}}>
+            <Box sx={{mt : 10, display:'flex' }}>
+                <Typography variant="h5" sx={{mb:3 , fontWeight:'bold'}}>마음에 드는 작품에 like를 눌러주세요</Typography>
+                {/* <Typography variant="h5" >Press like for your favorite work</Typography> */}
+            </Box>
+        <Grid container sx={{ justifyContent:'space-between' , paddingBottom:'100px'}}>
             {samples.map( (sample , index) => (
-                <Grid item key={index} sx={{width:'300px' , my:5}}>
-                <Box sx={{width:'300px' ,height:'330px' , display:'flex' , flexDirection:'column' ,alignItems:'center' , mt : 10}}>
+                <Grid item key={index} sx={{width:'300px' , mb:5}}>
+                <Box sx={{width:'300px' ,height:'330px' , display:'flex' , flexDirection:'column' ,alignItems:'center' }}>
                     <Box sx={{ height:'50px' , border:1, width:'300px', display:'flex' , alignItems:'center' , justifyContent:'space-between', backgroundColor:'black'}}>
                         <Box sx={{ml:2 , mb:0}}>
                             <Typography variant="body1" color="white" >{sample.title}</Typography>
