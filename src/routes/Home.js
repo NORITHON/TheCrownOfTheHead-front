@@ -4,6 +4,7 @@ import { Box } from "@mui/system";
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import {getItems} from "../apis/apis";
+import {loginStatus} from "./Login";
 
 const ImageBox = styled(Box)({
     width: '100%' , 
@@ -27,6 +28,13 @@ function Home(){
     const [items , setItems] = useState([]);
 
     useEffect(() => {
+        console.log(loginStatus);
+        if(loginStatus == "member"){
+            document.getElementById("hide_designer").style.display = "none";
+        }
+        else{
+            document.getElementById("hide_designer").style.display = "block";
+        }
         const getAllItems = async () => {
             const data = await getItems();
             setItems(data);

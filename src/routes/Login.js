@@ -3,6 +3,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, {useEffect, useState} from "react";
 import {createClient, createDesigner, getClients, getDesigners} from "../apis/apis";
+import {Link} from "react-router-dom";
 
 
 const StyledButton = styled(Button)({
@@ -38,6 +39,8 @@ const StyledTextField = styled(TextField)({
 
 export let client;
 export let designer;
+
+export let loginStatus;
 
 function Login(){
 
@@ -86,6 +89,7 @@ function Login(){
 
             setPassword("");
             setUser("");
+            loginStatus = "member"
 
         }else if(e.target.id ==="4"){
             const data ={
@@ -99,6 +103,7 @@ function Login(){
 
             setPassword("");
             setUser("");
+            loginStatus = "designer"
         }
     }
     return(
@@ -119,10 +124,10 @@ function Login(){
                         <StyledTextField sx={{width:'400px'}} id="user" value={user} onChange={onChange} placeholder="이메일"/>
                         <StyledTextField sx={{width:'400px'}} id="password" value={password} onChange={onChange}placeholder="비밀번호"/>
 
-                        <StyledButton id="1" onClick={onClick} sx={{mt:2}}>Sign up as designer</StyledButton>
-                    <StyledButton id="2" onClick={onClick}>Sign up as client</StyledButton>
-                    <StyledButton id="3" onClick={onClick}>Log in as client</StyledButton>
-                        <StyledButton id="4" onClick={onClick}>Log in as designer</StyledButton>
+                        <StyledButton id="1" onClick={onClick} component={Link} to="/login" sx={{mt:2}}>Sign up as designer</StyledButton>
+                    <StyledButton id="2" onClick={onClick} component={Link} to="/login">Sign up as client</StyledButton>
+                    <StyledButton id="3" onClick={onClick} component={Link} to="/">Log in as client</StyledButton>
+                        <StyledButton id="4" onClick={onClick} component={Link} to="/">Log in as designer</StyledButton>
 
                         <Typography variant="caption" sx={{color:'lightgray' , mt:2}}>아이디 찾기&nbsp;&nbsp; ㅣ &nbsp;&nbsp;비밀번호 찾기</Typography>
                     
