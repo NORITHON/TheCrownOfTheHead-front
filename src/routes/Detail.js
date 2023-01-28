@@ -2,7 +2,7 @@ import { Label } from "@mui/icons-material";
 import { Button, Input, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import styled from "@emotion/styled";
@@ -355,7 +355,7 @@ function Detail(){
                                 </Box>
 
                                 <Box sx={{display:'flex' , justifyContent:'end'}}>
-                                    <StyledButton onClick={onClickFund}>펀딩하기</StyledButton>
+                                    <StyledButton component={Link} to="/" onClick={onClickFund}>펀딩하기</StyledButton>
                                 </Box>
                             </Box>
                         
