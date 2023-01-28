@@ -76,21 +76,21 @@ function Header(){
                 
 
 
-                <Link to="./about" style={{ textDecoration:'inherit' , color:'inherit'}}>
-                    <StyledButton id="about" onClick={onClick} >ABOUT</StyledButton>
-                </Link>
+                {/* <Link to="./about" style={{ textDecoration:'inherit' , color:'inherit'}}> */}
+                    <StyledButton>ABOUT</StyledButton>
+                {/* </Link> */}
                 <Link to="../" style={{ textDecoration:'inherit' , color:'inherit'}}>
-                    <StyledButton id="home"  onClick={onClick}>Home</StyledButton>
+                    <StyledButton >Home</StyledButton>
                 </Link>
                 <Link to="./designer" style={{ textDecoration:'inherit' , color:'inherit'}}>
-                    <StyledButton id="designer"  onClick={onClick}>Designer</StyledButton>
+                    <StyledButton >Designer</StyledButton>
                 </Link>
                 <Link to="./like" style={{ textDecoration:'inherit' , color:'inherit'}}>
-                    <StyledButton id="like"  onClick={onClick}>Like</StyledButton>
+                    <StyledButton >Like</StyledButton>
                 </Link>
-                <Link to="./manage" style={{ textDecoration:'inherit' , color:'inherit'}}>
+                {/* <Link to="./manage" style={{ textDecoration:'inherit' , color:'inherit'}}>
                 <StyledButton id="manager"  onClick={onClick}>Manager</StyledButton>    
-                </Link>
+                </Link> */}
                 
                 
                 
