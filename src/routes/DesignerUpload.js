@@ -15,7 +15,6 @@ const StyledButton = styled(Button)({
     width:'100px' ,
     marginBottom: "30px",
     height:"30px",
-    borderRadius:0,
     backgroundColor:'#9D1CE5',
     '&:hover': {
         backgroundColor:"gray" ,
@@ -75,12 +74,13 @@ const onChange = (e) => {
     const onSubmit = async (e) => {
         const data ={
             title : title,
-            imageUrl : "img/"+ e.target.files[0].name,
+            imageUrl : leftImage,
+            //imageUrl : "img/"+ e.target.files[0].name,
             content : content,
             designerId : designer.id
         }
 
-        createSample(data);
+        await createSample(data);
 
         setTitle("");
         setContent("");
@@ -146,7 +146,7 @@ const inputRef = useRef(null);
 
             </Box>
             <Box sx={{width:'70%' , marginX:'auto' , display:'flex' , justifyContent:'right'}}>
-                <StyledButton onclick={onSubmit}> UPLOAD </StyledButton>
+                <StyledButton onClick={onSubmit}> UPLOAD </StyledButton>
             </Box>
         </Box>
     );
