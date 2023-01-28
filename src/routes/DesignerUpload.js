@@ -7,6 +7,8 @@ import { designer } from './Login.js';
 import {createSample} from "../apis/apis";
 import styled from "@emotion/styled";
 
+
+
 const StyledButton = styled(Button)({
     marginTop:"10px" ,
     borderRadius:0,
@@ -56,6 +58,15 @@ const StyledTextField2 = styled(TextField)({
 
 })
 
+const UploadText = styled(Box)({
+    display:'flex' , 
+    alignItems:'center', 
+    width:'70%', 
+    margin:'50px auto' , 
+    borderBottom:"1.5px solid", 
+    borderColor:'black', 
+    paddingBottom:"7px",
+})
 
 
 function DesignerUpload(){
@@ -110,10 +121,10 @@ const inputRef = useRef(null);
 
     return(
         <Box>
-            <Box sx={{display:'flex' , alignItems:'center', mt:10 , width:'70%', marginX:'auto' , borderBottom:1.5, borderColor:'black', pb:1  , mb:13}}>
-                <Typography sx={{ fontFamily:'Lovera' , fontSize:'40px'}}>Upload Your work</Typography>
+            <UploadText>
+                <Typography sx={{ fontFamily:'Lovera !important'  , fontSize:'40px'}}>Upload Your work</Typography>
                 
-            </Box>
+            </UploadText>
             <Box sx={{width:'70%' , marginX:'auto', display:'flex'}}>
 
                     <Box component="img" src={leftImage} sx={{width:'500px' , height:'400px' , border:2 , borderColor:'lightgray', backgroundColor:'lightgray' }}>
@@ -125,8 +136,7 @@ const inputRef = useRef(null);
                     </Box>
                     <Box>
                     <input style={{display:'none'}} type="file" accept="image/*" ref={inputRef} onChange={onUploadImage} />
-                    
-                    {/* <Button label="이미지 업로드" onClick={onUploadImageButtonClick} /> */}
+                
                     </Box>
 
 

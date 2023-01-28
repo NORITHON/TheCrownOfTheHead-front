@@ -11,9 +11,7 @@ const ImageBox = styled(Box)({
     height: '100%',
     display:'flex' , 
     justifyContent:'center' , 
-    // border:"1px solid black" ,
     margin:'40px auto',
-    // marginBottom : '200px'
 })
 
 const Item = styled(Box)({
