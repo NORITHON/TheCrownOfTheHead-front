@@ -30,7 +30,7 @@ export const getDesigners = async (data) =>{
 export const createSample = (data) =>{
     const response = axios.post("http://localhost:8080/api/sample" , data)
 
-    return response.data;
+    return response;
 }
 
 // Like page
