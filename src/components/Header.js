@@ -58,7 +58,7 @@ function Header(){
 
     return(
         <HeaderBox elevation={5}>
-            <AlignedBox>
+            <AlignedBox component={Link} to="/">
                 {/* <FontDownloadOutlinedIcon sx={{color: 'purple' , fontSize:'30px'}}/> */}
                 <Box component="img" src="img/logo1.png" width="150px" sx={{position:'relative' , top:-10}}></Box>
                 {/* <Typography variant="h5" sx={{fontFamily:'BarlowCondensed' , mr:3 , fontWeight:'bold' }}>Noriton</Typography>   */}

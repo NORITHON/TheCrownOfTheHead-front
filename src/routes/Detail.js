@@ -123,7 +123,7 @@ const OrderSeventhBox = styled(Box)({
 
 function Detail(){
 
-    const completePercent = 50;
+    
     
     const [totalCost , setTotalCost] = useState(0);
 
@@ -147,8 +147,12 @@ function Detail(){
         price : location.state?.price,
         image : location.state?.image,
         content : location.state?.content,
+        stockQuantity : location.state?.stockQuantity,
+        count : location.state?.count,
     }
-
+    console.log(clothes)
+    const completePercent =  Math.round((clothes.count*100) / (clothes.count + clothes.stockQuantity));
+    console.log (clothes.count ,clothes.stockQuantity )
     useEffect( () => {
         if(num <= 0 ) setTotalCost(0);
         else setTotalCost( num * parseInt(clothes.price));
@@ -213,13 +217,12 @@ function Detail(){
         <Box>
             <Box sx={{
                 marginY : "100px",
-                
                 display: "grid",
                 gap: "2rem",
                 width:"90%",
                 marginX: "auto",
                 gridTemplateAreas: `"infoPart imagePart orderPart"`,
-                gridTemplateColumns: "280px 1fr 320px"                 
+                gridTemplateColumns: "300px 1fr 320px"                 
             }}>
                     <InfoPartBox >
                         <Box>
