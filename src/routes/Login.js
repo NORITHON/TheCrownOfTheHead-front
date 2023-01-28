@@ -2,7 +2,9 @@ import styled from "@emotion/styled";
 import { Button, TextField, ToggleButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, {useEffect, useRef, useState} from "react";
+import { Link } from "react-router-dom";
 import {createClient, createDesigner, getClients, getDesigners} from "../apis/apis";
+
 
 
 const SignUpButton = styled(Button)({
@@ -53,6 +55,7 @@ const StyledTextField = styled(TextField)({
 
 export let client;
 export let designer;
+export let loginStatus;
 
 function Login(){
 
@@ -128,6 +131,7 @@ function Login(){
 
             setPassword("");
             setUser("");
+            loginStatus = "member";
 
         }else if(e.target.id ==="4"){
             const data ={
@@ -141,6 +145,7 @@ function Login(){
 
             setPassword("");
             setUser("");
+            loginStatus = "designer";
         }
     }
 
@@ -166,7 +171,7 @@ function Login(){
                         <StyledTextField sx={{width:'400px'}} id="password" value={password} onChange={onChange}placeholder="비밀번호"/>
 
 
-                        <LoginButton ref={loginRef} id="3" onClick={onClick}>Log in as client</LoginButton> 
+                        <LoginButton ref={loginRef} component = {Link} to = "/" id="3" onClick={onClick}>Log in as client</LoginButton> 
                         <SignUpButton sx={{textDecoration:'underline'}}ref={signUpRef} id="2" onClick={onClick}>Sign up as client</SignUpButton>
                     
                     <ToggleButton id="toggle" onClick={onClick} value="android">Who are u?</ToggleButton>
