@@ -28,9 +28,11 @@ function Home(){
     useEffect(() => {
 
         if(loginStatus == "member"){
+            console.log("member");
             document.getElementById("hide_designer").style.display = "none";
         }
         else{
+            console.log("designer");
             document.getElementById("hide_designer").style.display = "block";
         }
         const getAllItems = async () => {

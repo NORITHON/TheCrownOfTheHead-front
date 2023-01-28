@@ -16,7 +16,6 @@ const SignUpButton = styled(Button)({
     
     '&:hover': {
         opacity:'0.6',
-        // backgroundColor:"#9D1CE5" ,
     },
 })
 

@@ -201,7 +201,7 @@ function Detail(){
             itemId : clothes.id
         }
 
-        createFund(data);
+        await createFund(data);
 
         setAddress1("");
         setAddress2("");

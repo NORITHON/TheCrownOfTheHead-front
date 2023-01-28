@@ -2,7 +2,6 @@ import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useCallback, useRef, useState } from "react";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { designer } from './Login.js';
 import {createSample} from "../apis/apis";
@@ -57,6 +56,8 @@ const StyledTextField2 = styled(TextField)({
 
 })
 
+
+
 function DesignerUpload(){
 
     const [title , setTitle] = useState("");
@@ -71,25 +72,22 @@ const onChange = (e) => {
     }
 }
 
-    const onSubmit = async (e) => {
-        const data ={
-            title : title,
-            imageUrl : leftImage,
-            //imageUrl : "img/"+ e.target.files[0].name,
-            content : content,
-            designerId : designer.id
-        }
-
-        await createSample(data);
-
-        setTitle("");
-        setContent("");
-
+const onSubmit = async (e) => {
+    const data ={
+        title : title,
+        imageUrl : leftImage,
+        //imageUrl : "img/"+ e.target.files[0].name,
+        content : content,
+        designerId : designer.id
     }
 
+    await createSample(data);
 
+    setTitle("");
+    setContent("");
 
-// 수정
+}
+
 
 const [leftImage, setLeftImage] = useState("");
 
@@ -109,10 +107,6 @@ const inputRef = useRef(null);
       }
       inputRef.current.click();
     }, []);
-
-
-
-///////////////////////////////////////
 
     return(
         <Box>
