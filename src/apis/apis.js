@@ -63,6 +63,12 @@ export const createFund = (data) => {
     return response;
 }
 
+export const getItem = async (id) => {
+    const response = axios.get(`http://localhost:8080/api/item/${id}`);
+
+    return response.data;
+}
+
 // like page
 
 export const setLike = (data) => {
