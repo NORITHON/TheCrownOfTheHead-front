@@ -1,16 +1,31 @@
 import styled from "@emotion/styled";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField, ToggleButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {createClient, createDesigner, getClients, getDesigners} from "../apis/apis";
 
 
-const StyledButton = styled(Button)({
+const SignUpButton = styled(Button)({
+    color:'black', 
+    width:'400px' ,
+    backgroundColor:"white" ,
+    marginTop: "20px",
+    marginBottom: "20px",
+    
+    '&:hover': {
+        opacity:'0.6',
+        // backgroundColor:"#9D1CE5" ,
+    },
+})
+
+
+const LoginButton = styled(Button)({
     color:'white', 
     width:'400px' ,
     backgroundColor:"black" ,
     marginTop: "20px",
     marginBottom: "20px",
+    
     
     '&:hover': {
         opacity:'0.6',
@@ -41,6 +56,9 @@ export let designer;
 
 function Login(){
 
+    const signUpRef =  useRef();
+    const loginRef = useRef();
+
 
     const [user, setUser] = useState("");
     const [password , setPassword] = useState("");
@@ -54,7 +72,31 @@ function Login(){
         }
     }
 
-    const onClick = async (e) =>{
+    const onClick = async (e) => {
+        if(e.target.id === "toggle" && isDesigner === false){
+            // e.target.backgroundColor = "white";
+            e.target.style.color = 'lightgray';
+            signUpRef.current.id = 1;
+            signUpRef.current.innerText = "Sign up as a designer"
+            // signUpRef.current.style.backgroundColor = "lightgray"
+            loginRef.current.style.backgroundColor = "#9D1CE5"
+            loginRef.current.id = 4
+            loginRef.current.innerText = "Log in as a designer"
+            
+            setIsDesigner(true);
+        }else if(e.target.id ==="toggle" && isDesigner === true){
+            // e.target.style.backgroundColor = 'white';
+            e.target.style.color = 'black';
+            signUpRef.current.id = 2;
+            signUpRef.current.innerText = "Sign up as a client"
+            // signUpRef.current.style.backgroundColor = "white"
+            loginRef.current.style.backgroundColor = "black"
+            loginRef.current.id = 3;
+            loginRef.current.innerText = "Log in as a client"
+            setIsDesigner(false);
+        }
+        
+
         if(e.target.id ==="1"){
             const data = {
                 loginId : user,
@@ -101,6 +143,10 @@ function Login(){
             setUser("");
         }
     }
+
+
+    const [isDesigner , setIsDesigner] = useState(false);
+
     return(
         <Box sx={{
             display: 'flex',
@@ -119,10 +165,12 @@ function Login(){
                         <StyledTextField sx={{width:'400px'}} id="user" value={user} onChange={onChange} placeholder="이메일"/>
                         <StyledTextField sx={{width:'400px'}} id="password" value={password} onChange={onChange}placeholder="비밀번호"/>
 
-                        <StyledButton id="1" onClick={onClick} sx={{mt:2}}>Sign up as designer</StyledButton>
-                    <StyledButton id="2" onClick={onClick}>Sign up as client</StyledButton>
-                    <StyledButton id="3" onClick={onClick}>Log in as client</StyledButton>
-                        <StyledButton id="4" onClick={onClick}>Log in as designer</StyledButton>
+
+                        <LoginButton ref={loginRef} id="3" onClick={onClick}>Log in as client</LoginButton> 
+                        <SignUpButton sx={{textDecoration:'underline'}}ref={signUpRef} id="2" onClick={onClick}>Sign up as client</SignUpButton>
+                    
+                    <ToggleButton id="toggle" onClick={onClick} value="android">Who are u?</ToggleButton>
+                        
 
                         <Typography variant="caption" sx={{color:'lightgray' , mt:2}}>아이디 찾기&nbsp;&nbsp; ㅣ &nbsp;&nbsp;비밀번호 찾기</Typography>
                     
