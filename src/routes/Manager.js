@@ -2,8 +2,6 @@ import { Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, Table
 import { Box } from "@mui/system";
 import React, {useEffect, useRef, useState} from "react";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import DeleteIcon from '@mui/icons-material/Delete';
-import BuildIcon from '@mui/icons-material/Build';
 import styled from "@emotion/styled";
 import CloseIcon from '@mui/icons-material/Close';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
@@ -30,9 +28,7 @@ const StyledButton = styled(Button)({
     color:'white', 
     width:'70px' ,
     backgroundColor:"gray" ,
-    marginBottom: "30px",
     height:"40px",
-    
     '&:hover': {
         backgroundColor:"gray" ,
     },
@@ -49,6 +45,115 @@ const ApprovedButton = styled(Button)({
     },
 })
 
+const PopupContainer = styled(Box)({
+    display : 'flex' , 
+    paddingTop:"20px", 
+    justifyContent:'center' , 
+    width:'100%' , 
+    height:'830px' , 
+    backgroundColor:'gray'
+})
+
+const StyledPopup = styled(Paper)({
+    width : "50%" , 
+    height:'85%' , 
+    borderRadius:'4%' , 
+    paddingLeft:"50px" , 
+    paddingRight:"30px" , 
+    paddingTop:"30px"
+})
+
+const PopupCloseBox = styled(Box)({
+    display:'flex' , 
+    justifyContent:'right'
+})
+
+const PopupSampleBox = styled(Box)({
+    display:'flex' , 
+    flexDirection:'column' , 
+    alignItems:'start'
+})
+
+const PopupSampleName = styled(Typography)({})
+
+const PopupSampleDetailBox = styled(Box) ({
+    display : 'flex' , 
+    width:'100%' ,
+    height: "250px" ,
+    borderBottom:"2px solid" , 
+    borderColor:'lightgray' , 
+    padding:'30px 0' 
+})
+
+const PopupFlexAlignBox = styled(Box)({
+    display : 'flex' , 
+    justifyContent:'space-between' , 
+    alignItems:'center',
+    width:'100%',
+})
+
+const PopupLastBox = styled(Box)({
+    display:'flex', 
+    justifyContent:'end' , 
+    width:'100%'
+})
+
+const OrderContainer = styled(Box)({
+    gap: "1rem",
+    width:"90%",
+    margin: "100px auto",
+})
+
+const OrderSidebar = styled(Box)({
+    gridArea: 'sidebar1' , 
+    display:'flex' , 
+    alignItems:'start'
+})
+
+const OrderMain = styled(Box)({
+    gridArea: 'main1' , 
+    width:'75%' , 
+    minWidth:'800px'
+})
+
+const SampleContainer = styled(Box)({
+    gap: "1rem",
+    width:"90%",
+    margin: "100px auto",
+})
+
+const SampleSidebar = styled(Box)({
+    gridArea: 'sidebar2' ,  
+    display:'flex' , 
+    alignItems:'start'
+})
+
+const SampleMain = styled(Box)({
+    gridArea : 'main2' , 
+    width:'75%' , 
+    minWidth:'480px'
+})
+
+const SampleFlexAlignBox = styled(Box)({
+    display:'flex',
+    alignItems:'center',
+
+})
+
+const SampleFlexAlignBetweenBox = styled(SampleFlexAlignBox)({
+    justifyContent:"space-between"
+})
+
+const SampleItem = styled(Grid)({
+    minWidth:'300px'
+})
+
+const SampleImage = styled(Box)({
+    width:"100%" ,
+    height:"300px"
+})
+const SampleContent = styled(Box)({})
+
 function Manager(){
 
     const [isPopup , setIsPopup] = useState(false);
@@ -56,24 +161,6 @@ function Manager(){
     const [popup , setPopup] = useState([]);
 
     const [samples , setSamples] = useState([]);
-    
-
-   
-
-    const onClick = (e) =>{
-        if(e.target.id === "modify"){
-            window.confirm("수정하시겠습니까?");
-        }
-        else if(e.target.id ==="delete"){
-            window.confirm("삭제하시겠습니까?");
-        }
-        else if(e.target.id === "승인"){
-            window.confirm("승인하시겠습니까?");
-        }
-        else if(e.target.id === "미승인"){
-            window.confirm("미승인하시겠습니까?");
-        }
-    }
 
     const scrollRef = useRef();
 
@@ -86,9 +173,6 @@ function Manager(){
     const onClickClosePopup = () => {
         setIsPopup(false);
     }
-
-
-    const [popupName, setPopupName] = useState("");
 
     const [p1 , setP1] = useState("");
     const [p2 , setP2] = useState("");
@@ -178,72 +262,62 @@ function Manager(){
 
             <Box ref={scrollRef}>
                 
-        {isPopup ? <Box>
-            <Box sx={{display : 'flex' , pt:3, justifyContent:'center' , width:'100%' , height:'800px' , backgroundColor:'gray'}}>
-                <Paper sx={{width : "50%" , height:'85%' , borderRadius:'5%' , pl : 7 , pr:3 , pt:3}}>
-                    <Box sx={{display:'flex' , justifyContent:'right'}}>
+        {isPopup ? 
+        <Box>
+            <PopupContainer >
+                <StyledPopup>
+                    <PopupCloseBox>
                         <CloseIcon onClick={onClickClosePopup} fontSize="large"/>
-                    </Box>
-                    <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start'}}>
-                        <Typography variant="h4">About {popup.title}</Typography>
+                    </PopupCloseBox>
+                    <PopupSampleBox >
+                        <PopupSampleName variant="h4">About {popup.title}</PopupSampleName>
 
-                        <Box sx={{display : 'flex' , width:'100%' ,height: "250px" ,borderBottom:2 , borderColor:'lightgray' , py:3 }}>
+                        <PopupSampleDetailBox>
                             <Box component="img" src={popup.imageUrl} width="40%" sx={{ mr:2}}></Box>
                             <Box>
                                 <Box sx={{display:'flex' , alignItems:'center'}}>
-                                <ArticleOutlinedIcon sx={{mr:1}} />
-                                <Typography variant="h5">Product Information</Typography>
+                                    <ArticleOutlinedIcon sx={{mr:1}} />
+                                    <Typography variant="h5">Product Information</Typography>
                                 </Box>
                                 <Typography sx={{mt:2}}>{popup.content}</Typography>
                             </Box>
-                        </Box>
-                        <Box sx={{display : 'flex' , justifyContent:'space-between' , alignItems:'center',width:'100%', pt:2 }}>
+                        </PopupSampleDetailBox>
+                        <PopupFlexAlignBox sx={{pt:2 }}>
                             <Typography variant="body1">제품명</Typography>
                             <StyledTextField id="p1" value={p1} onChange={onchangep}/>
-                            {/* <Typography variant="body1">{popup.rawMaterialCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Typography> */}
-                        </Box>
+                        </PopupFlexAlignBox>
 
-                        <Box sx={{display : 'flex' , justifyContent:'space-between' , alignItems:'center',width:'100%' }}>
+                        <PopupFlexAlignBox>
                             <Typography variant="body1">원자재 비용</Typography>
                             <StyledTextField id="p2" value={p2} onChange={onchangep} />
-                            {/* <Typography variant="body1">{popup.rawMaterialCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Typography> */}
-                        </Box>
+                        </PopupFlexAlignBox>
 
-                        <Box sx={{display : 'flex' , justifyContent:'space-between', width:'100%', alignItems:'center'}}>
+                        <PopupFlexAlignBox >
                             <Typography variant="body1">공장 인건비</Typography>
-                            {/* <Typography variant="body1"></Typography> */}
                             <StyledTextField id="p3" value={p3} onChange={onchangep}/>
-                        </Box>
+                        </PopupFlexAlignBox>
 
-                        <Box sx={{display : 'flex' , justifyContent:'space-between', alignItems:'center', width:'100%' , pr:2}}>
+                        <PopupFlexAlignBox sx={{pr:2}}>
                             <Typography>공모 모집 인원</Typography>
                             <StyledTextField id="p4" value={p4} onChange={onchangep}/>
-                            {/* <Typography>{popup.distributionCost}</Typography> */}
-                        </Box>
-                        <Box sx={{display:'flex', justifyContent:'end' , width:'100%'}}>
-                            <StyledButton onClick={onMakeItem} sx={{backgroundColor:'gray' , color:'white', my:1}}>신청하기</StyledButton>
-                        </Box>
-                    </Box>
-                </Paper>
-            </Box>
+                        </PopupFlexAlignBox>
+                        <PopupLastBox>
+                            <StyledButton onClick={onMakeItem} sx={{mt:1.5}}>신청하기</StyledButton>
+                        </PopupLastBox>
+                    </PopupSampleBox>
+                </StyledPopup>
+            </PopupContainer>
         </Box> :
             <Box>
-            <Box sx={{
-            display: { md : "flex", sx: 'none'},
-            gap: "1rem",
-            width:"90%",
-            margin: "100px auto",
-                                
-
-           }}>
-                <Box sx={{ gridArea: 'sidebar1' , border:0 , display:'flex' , alignItems:'start'}}>
+            <OrderContainer sx={{display: { md : "flex", xs: 'none'}}}>
+                <OrderSidebar >
                     <Typography variant="h5" sx={{ mr : 8 , mb:3}}>주문내역 확인</Typography>
                     <ArrowForwardIosIcon sx={{ mr : 8}} fontSize="large"/>
-                </Box>
-                <Box sx={{ gridArea: 'main1', border:0 , width:'75%' , minWidth:'550px'}}>
+                </OrderSidebar>
+                <OrderMain >
                 
                 <TableContainer component={Paper} elevation={5}>
-                    <Table sx={{}} size="small" aria-label="a dense table">
+                    <Table size="small" aria-label="a dense table">
                         <TableHead>
                         <TableRow>
                             <TableCell sx={{ backgroundColor:'lightgray' , border:0}} align="center" >주문 번호</TableCell>
@@ -288,69 +362,51 @@ function Manager(){
                             <TableCell align="center">0</TableCell>
                             <TableCell align="center">Approved</TableCell>
                             <TableCell align="center"> 
-                            
-                            </TableCell>
-                            
+                            </TableCell> 
                             </TableRow>
                         ))}
-
-
-
-                        </TableBody>
-                    </Table>
+                            </TableBody>
+                        </Table>
                     </TableContainer>
-                </Box>
-                    
-                
-        </Box>
-        <Box sx={{
+                </OrderMain>
+        </OrderContainer>
+        <SampleContainer sx={{
              display: { md : "flex", sx: 'none'},
-             gap: "1rem",
-             width:"90%",
-             margin: "100px auto",
         }}>
-            <Box sx={{ gridArea: 'sidebar2' , border:0 , display:'flex' , alignItems:'start'}}>
-                        <Typography variant="h5" sx={{ mr : 2}}>디자이너 상품 승인</Typography>
+            <SampleSidebar>
+                        <Typography variant="h5" sx={{ mr : 2 , mb:3}}>디자이너 상품 승인</Typography>
                         <ArrowForwardIosIcon fontSize="large" sx={{ mr : 8}}/>
-            </Box>
+            </SampleSidebar>
 
-            <Box sx={{gridArea : 'main2' , border: 0 , width:'75%' , minWidth:'550px'}}>
+            <SampleMain >
                 <Box sx={{borderBottom:2 , borderColor:"lightgray" , pb:1}}>
                     <Typography variant="h6">상품명</Typography>
                 </Box>
                 
-                <Grid container sx={{ justifyContent:'space-between' , alignItems:'center' }}>
+                <Grid container sx={{ justifyContent:{ md : 'space-between' , xs:'space-evenly'} , alignItems:'center' }}>
                 {samples.map( (sample, index) => (
-                        <Grid key={index} item md={3.5}  sx={{my:5 , minWidth:'300px'}}>
-                            <Box component="img" src={sample.imageUrl} sx={{width:"100%" ,height:"300px"}}></Box>
-                                <Box>
-                                <Box sx={{display : 'flex' , justifyContent:"space-between" , alignItems:'center' , mt:1 ,mx:2 , mb:0.5 }}>
-                                        <Typography variant="body1">{ sample.title.length >= 15 ? sample.title.slice(0,15) + "..." : sample.title }</Typography>
-                                        <Box sx={{display:'flex'}}>
-                                            {/* <Button id="승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray' , width:"40px"}}>승인</Button>    */}
-                                            {/* <Button id="미승인" onClick={onClick} sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"25px" ,borderColor:'lightgray'}}>미승인</Button>    */}
-                                        </Box>
-                                </Box>
-                                <Box onClick={ () => onClickDetail(sample)} sx={{ mx:2,display : 'flex' ,justifyContent:'space-between' ,alignItems:'center'  , mt:1}}>
-                                    <Box sx={{display:'flex' , alignItems:'center'}}>
-                                        <Typography variant="body2" sx={{color:'gray'}}>상세보기 </Typography>
-                                        <ArrowForwardIosIcon sx={{fontSize:'13px' , mb:0.3 , ml:1 , color:'gray'}}/>
-                                    </Box>
-                                    <Box sx={{display : 'flex' , alignItems:'center'}}>
-                                        <FavoriteBorderIcon sx={{fontSize:'20px' , mr:1 , color:'red'}} />
-                                        <Typography sx={{color:'red'}}>{sample.likeCount}</Typography>
-                                    </Box>
-                                </Box>
-                                </Box>
-                        </Grid>
+                        <SampleItem key={index} item md={3.5}  sx={{my:5}}>
+                            <SampleImage component="img" src={sample.imageUrl}></SampleImage>
+                                <SampleContent>
+                                    <SampleFlexAlignBetweenBox sx={{mt:1 ,mx:2 , mb:0.5 }}>
+                                            <Typography variant="body1">{ sample.title.length >= 15 ? sample.title.slice(0,15) + "..." : sample.title }</Typography>
+                                    </SampleFlexAlignBetweenBox>
+                                    <SampleFlexAlignBetweenBox onClick={ () => onClickDetail(sample)} sx={{ mx:2, mt:1}}>
+                                        <SampleFlexAlignBox>
+                                            <Typography variant="body2" sx={{color:'gray'}}>상세보기 </Typography>
+                                            <ArrowForwardIosIcon sx={{fontSize:'13px' , mb:0.3 , ml:1 , color:'gray'}}/>
+                                        </SampleFlexAlignBox>
+                                        <SampleFlexAlignBox>
+                                            <FavoriteBorderIcon sx={{fontSize:'20px' , mr:1 , color:'red'}} />
+                                            <Typography sx={{color:'red'}}>{sample.likeCount}</Typography>
+                                        </SampleFlexAlignBox>
+                                    </SampleFlexAlignBetweenBox>
+                                </SampleContent>
+                        </SampleItem>
                     ))}
-                    
                 </Grid>
-
-
-            </Box>
-    
-        </Box> 
+            </SampleMain>
+        </SampleContainer> 
         </Box>
         }
         
