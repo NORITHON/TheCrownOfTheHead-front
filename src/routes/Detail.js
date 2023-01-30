@@ -10,6 +10,14 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import {createFund} from "../apis/apis";
 import {client} from "./Login";
 
+const TotalContainer = styled(Box)({
+    margin : "100px auto",
+    display: "grid",
+    gap: "2rem",
+    width:"90%",
+    // marginX: "auto",
+      
+})
 
 const StyledButton = styled(Button)({
     color:'white', 
@@ -63,6 +71,34 @@ const InfoSecondBox = styled(Box)({
 const InfoThirdBox = styled(Box)({
     display:'flex' , 
     flexDirection:'column'
+})
+
+const InfoFourthBox = styled(Box)({
+    borderTop:"1px solid" , 
+    borderBottom:"1px solid" , 
+    borderColor:'lightgray',
+    paddingTop:'20px',
+    paddingBottom:'20px'
+})
+
+const InfoLastBox = styled(Box)({
+})
+
+const LastBoxFirstLine = styled(Box)({
+    display : 'flex' , 
+    justifyContent:'space-between' , 
+    alignItems:'center',
+    marginTop : "20px"
+})
+
+const LastBoxRangeBar = styled(Box)({
+    height:'5px', 
+    backgroundColor:'beige'
+})
+const LastBoxLastLine = styled(Box)({
+    display:'flex' , 
+    justifyContent:'space-between' , 
+    marginTop:"5px"
 })
 
 const ImagePartBox = styled(Box)({
@@ -121,6 +157,48 @@ const OrderSeventhBox = styled(Box)({
     paddingBottom:'10px'
 })
 
+const OrderLastBox = styled(Box)({})
+
+const PriceText = styled(Typography)({
+    fontWeight:'bold',
+    marginTop:"10px",
+    marginBottom:'25px'
+})
+
+const ProductName = styled(Typography)({
+})
+const ProductContent = styled(Typography)({
+    lineHeight: '170%'
+})
+
+const FlexBox = styled(Box)({
+    display : 'flex'
+})
+
+const FlexVerticalAlignBox = styled(FlexBox)({
+    alignItems:'center'
+})
+
+const PostSearchButton = styled(Button)({
+    backgroundColor:'lightGray', 
+    opacity:'0.8' , 
+    color:'black'
+})
+const BuyButton = styled(Button)({
+    backgroundColor:'white',
+    opacity:'0.7' , 
+    color:'black', 
+    borderRadius:0 , 
+    border:"1px solid", 
+    height:"30px", 
+    width:'105px', 
+    borderColor:'lightgray'
+})
+
+const FlexSpaceBetweenBox = styled(FlexBox)({
+    justifyContent:'space-between'
+})
+
 function Detail(){
 
     
@@ -150,9 +228,8 @@ function Detail(){
         stockQuantity : location.state?.stockQuantity,
         count : location.state?.count,
     }
-    console.log(clothes)
+
     const completePercent =  Math.round((clothes.count*100) / (clothes.count + clothes.stockQuantity));
-    console.log (clothes.count ,clothes.stockQuantity )
     useEffect( () => {
         if(num <= 0 ) setTotalCost(0);
         else setTotalCost( num * parseInt(clothes.price));
@@ -211,95 +288,91 @@ function Detail(){
         setPhone3("");
     }
 
-
-
     return(
-        <Box>
-            <Box sx={{
-                marginY : "100px",
-                display: "grid",
-                gap: "2rem",
-                width:"90%",
-                marginX: "auto",
-                gridTemplateAreas: `"infoPart imagePart orderPart"`,
-                gridTemplateColumns: "300px 1fr 320px"                 
+        <>
+            <TotalContainer sx={{
+                gridTemplateAreas: {md :`"infoPart imagePart orderPart"`,
+                                    sm : `"imagePart orderPart"`,
+                                    xs : `"orderPart"`},
+                                                        
+                gridTemplateColumns:{md : "300px 1fr 320px" ,
+                                        sm : "1fr 320px",
+                                        xs : "1fr"             
+                                                  }
             }}>
-                    <InfoPartBox >
+                    <InfoPartBox sx={{ display : {md:'flex' , sm : 'none' , xs:'none'}}}>
                         <Box>
-                            <Typography variant="h5">{clothes.name}</Typography>
-                            <Typography variant="h5" sx={{fontWeight:'bold' , my:2, mb:5}}>{clothes.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Typography>
+                            <ProductName variant="h5">{clothes.name}</ProductName>
+                            <PriceText variant="h5" >{clothes.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} 원</PriceText>
                         </Box>
                         
-                        <InfoSecondBox>
-                            <Typography variant="body2">{clothes.content}</Typography>
+                        <InfoSecondBox >
+                            <ProductContent variant="body2">{clothes.content}</ProductContent>
                         </InfoSecondBox>
 
                         <InfoThirdBox >
-                            <Box sx={{display :'flex'}}>
-                            <Typography variant="body2" sx={{my:1.5 , mr:4}}>원산지 </Typography>
-                            <Typography variant="body2" sx={{my:1.5}}>Mogolian</Typography>
-                            </Box>
-                            <Box sx={{display :'flex'}}>
-                            <Typography variant="body2" sx={{mb:1.5 , mr:2.5}}>배송정보</Typography>
-                            <Typography variant="body2" sx={{mb:1.5}}>택배 (해외배송)</Typography>
-                            </Box>
-                            <Box sx={{display:'flex'}}>
-                            <Typography variant="body2" sx={{mb: 1.5,mr:4}}>배송비 </Typography>
-                            <Typography variant="body2"> {shippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원 (90,000원 이상 무료배송)</Typography>
-                            </Box>
+                            <FlexBox>
+                                <Typography variant="body2" sx={{my:1.5 , mr:4}}>원산지 </Typography>
+                                <Typography variant="body2" sx={{my:1.5}}>Mogolian</Typography>
+                            </FlexBox>
+                            <FlexBox>
+                                <Typography variant="body2" sx={{mb:1.5 , mr:2.5}}>배송정보</Typography>
+                                <Typography variant="body2" sx={{mb:1.5}}>택배 (해외배송)</Typography>
+                            </FlexBox>
+                            <FlexBox>
+                                <Typography variant="body2" sx={{mb: 1.5,mr:4}}>배송비 </Typography>
+                                <Typography variant="body2"> {shippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원 (90,000원 이상 무료배송)</Typography>
+                            </FlexBox>
                         </InfoThirdBox>
                         
-                            <Box sx={{borderTop:1 , borderBottom:1 , borderColor:'lightgray',py:1}}>
-                                <Box sx={{display:'flex'}}>
-                                    <Typography variant="body2" sx={{my:1 ,mr:5}}>리뷰</Typography>
-                                    <Typography variant="body2"sx={{my:1}}>(17)</Typography>
-                                </Box>
+                            <InfoFourthBox>
+                                <FlexBox>
+                                    <Typography variant="body2" sx={{ mr:5}}>리뷰</Typography>
+                                    <Typography variant="body2">(17)</Typography>
+                                </FlexBox>
 
-                                <Box sx={{display:'flex'}}>
-                                    <Typography variant="body2" sx={{mb:2, mr:5}}>Q&A</Typography>
-                                    <Typography variant="body2">(2)</Typography>
-                                </Box>
-                        </Box>
-                        <Box>
-                            <Box sx={{mt:5}}>
-                                <Box sx={{display : 'flex' , justifyContent:'space-between' , alignItems:'center'}}>
-                                <Typography variant="caption">18일 남음</Typography>
-                                <Typography variant="h6" sx={{color:'green'}}>{completePercent}%</Typography>
-                                </Box>
-                            </Box>
-                            <Box sx={{height:'5px', backgroundColor:'beige'}}>
-                                <Box sx={{width:`${completePercent}%` , backgroundColor:'green' , height:'100%'}}>&nbsp;</Box>
-                            </Box>
-                            <Box sx={{display:'flex' , justifyContent:'space-between' , mt:1}}>
-                                <Typography variant="caption" sx={{color:'gray'}}>1,000,000원 목표</Typography>
-                                <Typography variant="body2" sx={{color:'gray'}} >1,299,900원</Typography>
-                            </Box>
-                        </Box>
-
+                                <FlexBox>
+                                    <Typography variant="body2" sx={{mt:1.5, mr:4.5}}>Q&A</Typography>
+                                    <Typography variant="body2"sx={{mt:1.5}}>(2)</Typography>
+                                </FlexBox>
+                            </InfoFourthBox>
+                            <InfoLastBox>
+                                <LastBoxFirstLine>
+                                    <Typography variant="caption">18일 남음</Typography>
+                                    <Typography variant="h6" sx={{color:'green'}}>{completePercent}%</Typography>
+                                </LastBoxFirstLine>
+                                <LastBoxRangeBar>
+                                    <Box sx={{width:`${completePercent}%` , backgroundColor:'green' , height:'100%'}}>&nbsp;</Box>
+                                </LastBoxRangeBar>
+                                <LastBoxLastLine >
+                                    <Typography variant="caption" sx={{color:'gray'}}>1,000,000원 목표</Typography>
+                                    <Typography variant="body2" sx={{color:'gray'}} >1,299,900원</Typography>
+                                </LastBoxLastLine>
+                            </InfoLastBox>
                     </InfoPartBox>
-                    <ImagePartBox >
+
+                    <ImagePartBox sx={{ display : {sm:'flex', xs:'none'}}}>
                         <Box component="img" src={clothes.image} width="100%" height="100%"></Box>
                     </ImagePartBox>
                     <OrderPartBox>
-                       
-                            
-                            <OrderFirstBox>
-                                <Box sx={{ display:'flex' , alignItems:'center'}}>
-                                <CalendarTodayIcon fontSize="small" sx={{mb:0.3}} /><Typography variant="body1" sx={{ml:1}}>
-                                    결제 및 발송 예정일
-                                    </Typography>
-                                </Box>
+                            <OrderFirstBox >
+                                <FlexVerticalAlignBox>
+                                    <CalendarTodayIcon fontSize="small" sx={{mb:0.3}} />
+                                    <Typography variant="body1" sx={{ml:1}}>결제 및 발송 예정일</Typography>
+                                </FlexVerticalAlignBox>
+                                
                                 <Typography variant="caption" sx={{my:1, ml:2 , color:'gray'}}>100% 달성 시에만 아래 지정일에 결제됩니다.</Typography>
                                 <Typography variant="caption" sx={{ml:0.5 }}>1차 결제일: 2023년 2월 3일, 예상 발송일: 2023년 2월 16일</Typography>
                                 <Typography variant="caption" sx={{ml:0.5,mb:1 }}>2차 결제일: 2023년 2월 20일, 예상 발송일: 2023년 2월 28일</Typography>
                                 
                             </OrderFirstBox>
+                            
                             <OrderSecondBox>
                                     <Typography variant="body2">배송지 입력</Typography>
-                                    <Box sx={{display:'flex' , alignItems:'center'}}>
-                                        <StyledTextField id="address1" value={address1} onChange={onChangeCollection} sx={{width : '120px' , mr:2}}></StyledTextField>
-                                        <Button sx={{backgroundColor:'lightGray', opacity:'0.8' , color:'black'}}>우편번호 검색</Button>
-                                    </Box>
+                                    <FlexVerticalAlignBox >
+                                        <StyledTextField id="address1" value={address1} onChange={onChangeCollection} sx={{width : '120px' , mr:2}} />
+                                        <PostSearchButton >우편번호 검색</PostSearchButton>
+                                    </FlexVerticalAlignBox>
                             </OrderSecondBox>
 
                             <OrderThirdBox > 
@@ -322,51 +395,48 @@ function Detail(){
 
                             <OrderSixthBox>
                                 <Typography variant="body2">수량</Typography>
-                                <Box sx={{display : 'flex' , alignItems:'center'}}>
-                                    <Button onClick={onClick} id="-" sx={{color:'black' }}><RemoveIcon sx={{fontSize:'15px'}}/></Button>
-                                    <Box >{num}</Box>
-                                    <Button onClick={onClick} id="+" sx={{color:'black'}}><AddIcon sx={{fontSize:'15px'}}/></Button>
-                                </Box>
+                                <FlexVerticalAlignBox>
+                                    <Button onClick={onClick} id="-" sx={{color:'black'}}>
+                                        <RemoveIcon sx={{fontSize:'15px'}}/>
+                                    </Button>
+                                    <Box>{num}</Box>
+                                    <Button onClick={onClick} id="+" sx={{color:'black'}}>
+                                        <AddIcon sx={{fontSize:'15px'}}/>
+                                    </Button>
+                                </FlexVerticalAlignBox>
                             </OrderSixthBox>
-
                             <OrderSeventhBox>
-                                <Box sx={{display : 'flex' ,my: 2 , justifyContent:'space-between' }}>
+                                <FlexSpaceBetweenBox sx={{my: 2 }}>
                                     <Typography variant="body2">총 상품금액</Typography>
                                     <Typography variant="body2">{totalCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Typography>
-                                </Box>
+                                </FlexSpaceBetweenBox>
 
-                                <Box sx={{display : 'flex' ,my: 2 , justifyContent:'space-between' }}>
+                                <FlexSpaceBetweenBox sx={{my: 2}}>
                                     <Typography variant="body2">배송비</Typography>
                                     <Typography variant="body2">{shippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Typography>
-                                </Box>
+                                </FlexSpaceBetweenBox>
                                 
-                                <Box sx={{display : 'flex' , justifyContent:'space-between' }}>
+                                <FlexSpaceBetweenBox>
                                     <Typography variant="body1" sx={{fontWeight:'bold'}}>총 상품금액</Typography>
                                     <Typography variant="body1" sx={{fontWeight: 'bold'}}>{ (totalCost + shippingFee)===10000 ? 0 : (totalCost + shippingFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Typography>
-                                </Box>
-
-                                
+                                </FlexSpaceBetweenBox>
                             </OrderSeventhBox>
                             
-                            <Box>
-                                <Box sx={{display : 'flex', justifyContent:'space-between',alignItems:'center' , mt:1}}>
+                            <OrderLastBox>
+                                <FlexSpaceBetweenBox sx={{alignItems:'center' , mt:1}}>
                                     <Typography variant="body1">결제방식</Typography>
                                     <Box>
-                                        <Button sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1, height:"30px", width:'130px', borderColor:'lightgray'}}>장바구니 담기</Button>
-                                        <Button sx={{backgroundColor:'white', opacity:'0.7' , color:'black', borderRadius:0 , border:1 , height:"30px", width:'70px' ,borderColor:'lightgray'}}>구매하기</Button>   
+                                        <BuyButton >장바구니 담기</BuyButton>
+                                        <BuyButton >구매하기</BuyButton>   
                                     </Box>
-                                </Box>
-
+                                </FlexSpaceBetweenBox>
                                 <Box sx={{display:'flex' , justifyContent:'end'}}>
                                     <StyledButton component={Link} to="/" onClick={onClickFund}>펀딩하기</StyledButton>
                                 </Box>
-                            </Box>
-                        
-                    
+                            </OrderLastBox>
                     </OrderPartBox>
-            </Box>
-
-        </Box>
+            </TotalContainer>
+        </>
     );
 }
 
