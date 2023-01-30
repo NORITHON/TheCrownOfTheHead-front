@@ -1,16 +1,21 @@
 import axios from "axios"
+
 // Login page
+
 export const createClient = (data) => {
     const response = axios.post("http://localhost:8080/api/member" , data);
 
     return response;
 }
+
 // Login page
+
 export const createDesigner = (data) => {
     const response = axios.post("http://localhost:8080/api/designer" , data);
 
     return response;
 }
+
 // Login page
 
 export const getClients = async (data) =>{
@@ -27,6 +32,7 @@ export const getDesigners = async (data) =>{
 }
 
 // Upload page
+
 export const createSample = (data) =>{
     const response = axios.post("http://localhost:8080/api/sample" , data)
 
@@ -34,6 +40,7 @@ export const createSample = (data) =>{
 }
 
 // Like page
+
 export const getSamples = async () =>{
     const response = await axios.get("http://localhost:8080/api/sample");
 
@@ -41,6 +48,7 @@ export const getSamples = async () =>{
 }
 
 // manage popup page
+
 export const createItem = (data) => {
     const response = axios.post("http://localhost:8080/api/item",data);
 

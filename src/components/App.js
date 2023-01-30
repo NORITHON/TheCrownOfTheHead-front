@@ -2,9 +2,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Detail from "../routes/Detail";
-import Form from "../routes/Like";
 import Home from "../routes/Home";
-import List from "../routes/Designer";
 import Login from "../routes/Login";
 import Manager from "../routes/Manager";
 import Page404 from "../routes/Page404";
@@ -14,9 +12,8 @@ import Designer from "../routes/Designer";
 import Like from "../routes/Like";
 import DesignerUpload from "../routes/DesignerUpload";
 import "./font.css";
-function App() {
 
-  // document.body.style.* = "Lovera !important";
+function App() {
 
   return (
     <BrowserRouter>
@@ -30,7 +27,6 @@ function App() {
         <Route path="/manage" element={ <Manager />} />  
         <Route path="/upload" element={<DesignerUpload />} />    
         <Route path="*" element={<Page404 />} />
-        
       </Routes>
       <Footer />
     </BrowserRouter>

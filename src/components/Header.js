@@ -1,17 +1,31 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import FontDownloadOutlinedIcon from '@mui/icons-material/FontDownloadOutlined';
-import { Box, Button, Paper, Select, Typography } from "@mui/material";
+
+import { Box, Button} from "@mui/material";
 import "../fonts/fonts.css";
 import { Link } from "react-router-dom";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
-const AlignedBox = styled(Box)((props) => ({
+
+const AlignedBox = styled(Box)({
     display:'flex',
     alignItems:'center',
-    marginLeft : props.marginl,
-}));
+});
+
+const LogoBox = styled(AlignedBox)({
+})
+
+const NavBox = styled(AlignedBox)({
+})
+
+const LoginBox = styled(AlignedBox)({
+})
+
+const InheritLink = styled(Link)({
+    textDecoration:'inherit' , 
+    color:'inherit'
+})
 
 const StyledButton = styled(Button)({
     color: 'black',
@@ -20,16 +34,6 @@ const StyledButton = styled(Button)({
     '&:hover': {
        color: 'purple',
     },
-})
-
-const NotionFreeButton = styled(Button)({
-    backgroundColor: 'purple',
-    color: 'white',
-    borderRadius:'5px',
-    '&:hover': {
-        backgroundColor: 'purple',
-    },
-    height:'30px'
 })
 
 const HeaderBox = styled(Box)({
@@ -58,54 +62,37 @@ function Header(){
 
     return(
         <HeaderBox elevation={5}>
-            <AlignedBox component={Link} to="/">
-                {/* <FontDownloadOutlinedIcon sx={{color: 'purple' , fontSize:'30px'}}/> */}
-                <Box component="img" src="img/logo1.png" width="150px" sx={{position:'relative' , top:-10}}></Box>
-                {/* <Typography variant="h5" sx={{fontFamily:'BarlowCondensed' , mr:3 , fontWeight:'bold' }}>Noriton</Typography>   */}
-            </AlignedBox>
-            <AlignedBox >
-                {/* <StyledButton>Product</StyledButton>
-                <StyledButton>Download</StyledButton>
-                <StyledButton>Solution</StyledButton>
-                <StyledButton>Contens</StyledButton>
-                <StyledButton>Costs</StyledButton> */}
-
+            <LogoBox component={Link} to="/">
+                <Box component="img" src="img/logo1.png" width="150px" sx={{position:'relative' , top:-10}}></Box>     
+            </LogoBox>
+            <NavBox >
+                <StyledButton>ABOUT</StyledButton>
                 
-                {/* navigation */}
-                
-                
-
-
-                {/* <Link to="./about" style={{ textDecoration:'inherit' , color:'inherit'}}> */}
-                    <StyledButton>ABOUT</StyledButton>
-                {/* </Link> */}
-                <Link to="../" style={{ textDecoration:'inherit' , color:'inherit'}}>
+                <InheritLink to="../" >
                     <StyledButton >Home</StyledButton>
-                </Link>
-                <Link to="./designer" id= "hide_designer" style={{ textDecoration:'inherit' , color:'inherit'}}>
+                </InheritLink>
+                
+                <InheritLink to="./designer" id= "hide_designer" >
                     <StyledButton >Designer</StyledButton>
-                </Link>
-                <Link to="./like" style={{ textDecoration:'inherit' , color:'inherit'}}>
+                </InheritLink>
+                
+                <InheritLink to="./like">
                     <StyledButton >Like</StyledButton>
-                </Link>
-                {/* <Link to="./manage" style={{ textDecoration:'inherit' , color:'inherit'}}>
-                <StyledButton id="manager"  onClick={onClick}>Manager</StyledButton>    
-                </Link> */}
-                
-                
-                
-            </AlignedBox>
+                </InheritLink>
+            </NavBox>
 
-            <AlignedBox >
-                <Link to="./login" style={{ textDecoration:'inherit' , color:'inherit'}}>
+            <LoginBox >
+                <InheritLink to="./login">
                     <StyledButton>Log In</StyledButton>
-                </Link>
-                <Link to={toggle === "http://localhost:3000/list" ? "../" : "./list"} onClick={onClick} style={{textDecoration:'inherit' , color:'inherit'}}>
-                    
-                    </Link>
-                    <SearchOutlinedIcon sx={{fontSize:'33px' , mx:1}}/>
-                    <ShoppingCartOutlinedIcon sx={{fontSize:'30px' }}/>
-            </AlignedBox>
+                </InheritLink>
+                
+                <InheritLink to={toggle === "http://localhost:3000/list" ? "../" : "./list"} onClick={onClick}>    
+                </InheritLink>
+
+                <SearchOutlinedIcon sx={{fontSize:'33px' , mx:1}}/>
+                <ShoppingCartOutlinedIcon sx={{fontSize:'30px' }}/>
+
+            </LoginBox>
         </HeaderBox>
     );
 }

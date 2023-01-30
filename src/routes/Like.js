@@ -90,7 +90,7 @@ function Like(){
         const allAlreadyLikedData = await readAlreadyLiked(client.id);
         
         const result = allAlreadyLikedData.filter( (element , index) => element.sample.id === sample.id );
-
+        
         if(result.length === 0){
             copiedSamples[idx].likeCount = sample.likeCount + 1
             await setLike(data);
