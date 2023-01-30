@@ -8,7 +8,6 @@ import {createSample} from "../apis/apis";
 import styled from "@emotion/styled";
 
 
-
 const StyledButton = styled(Button)({
     marginTop:"10px" ,
     borderRadius:0,
@@ -22,7 +21,7 @@ const StyledButton = styled(Button)({
     },
 });
 
-const StyledTextField1 = styled(TextField)({
+const TitleTextField = styled(TextField)({
     ' .MuiOutlinedInput-root': {
         
         '& fieldset': {
@@ -37,11 +36,12 @@ const StyledTextField1 = styled(TextField)({
             borderColor:  '#9D1CE5',
           },
     },
+    width:'100%'
 
 })
 
 
-const StyledTextField2 = styled(TextField)({
+const DescriptionTextField = styled(TextField)({
     ' .MuiOutlinedInput-root': {
         '& fieldset': {
             margin:'auto 0',
@@ -55,10 +55,11 @@ const StyledTextField2 = styled(TextField)({
             borderColor: '#9D1CE5',
           },
     },
+    width:'100%'
 
 })
 
-const UploadText = styled(Box)({
+const TitleBox = styled(Box)({
     display:'flex' , 
     alignItems:'center', 
     width:'70%', 
@@ -68,6 +69,53 @@ const UploadText = styled(Box)({
     paddingBottom:"7px",
 })
 
+const TitleText = styled(Typography)({
+    fontFamily:'Lovera !important', 
+    fontSize:'40px'
+})
+
+const UploadContainer = styled(Box)({
+    width:'70%',
+    margin:'0 auto',
+    display:'flex'
+})
+
+const UploadImagePreview = styled(Box)({
+    minWidth:'400px' ,
+    height:'400px' ,
+    border:"1px solid" ,
+    borderColor:'lightgray',
+    backgroundColor:'lightgray'
+})
+
+const UploadButtonContainer = styled(Box)({
+    display: 'flex',
+    minWidth:"200px" ,
+    flexDirection:'column' ,
+    justifyContent:'center' ,
+    alignItems:'center'
+})
+
+const UploadButton = styled(Paper)({
+    width:'55px' , 
+    height:'55px' , 
+    borderRadius:'50%'
+})
+
+const InputContainer = styled(Box)({
+    display:'flex' ,
+    flexDirection:'column' ,
+    alignItems:'start' ,
+    width:'100%' ,
+    justifyContent:'space-between'
+})
+
+const SubmitButtonContainer = styled(Box)({
+    width:'70%' , 
+    margin:'0 auto' , 
+    display:'flex' , 
+    justifyContent:'right'
+})
 
 function DesignerUpload(){
 
@@ -120,39 +168,36 @@ const inputRef = useRef(null);
     }, []);
 
     return(
-        <Box>
-            <UploadText>
-                <Typography sx={{ fontFamily:'Lovera !important'  , fontSize:'40px'}}>Upload Your work</Typography>
-                
-            </UploadText>
-            <Box sx={{width:'70%' , marginX:'auto', display:'flex'}}>
-
-                    <Box component="img" src={leftImage} sx={{width:'500px' , height:'400px' , border:2 , borderColor:'lightgray', backgroundColor:'lightgray' }}>
-                        
-                    </Box>
-                    <Box sx={{display: 'flex', width:"300px" , flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
-                        <Paper elevation={3} sx={{width:'55px' , height:'55px' , borderRadius:'50%'}}><FileUploadIcon onClick={onUploadImageButtonClick} sx={{ border:0,borderRadius:"50%", p:2}} /></Paper>
+        <>
+            <TitleBox>
+                <TitleText>Upload Your work</TitleText>   
+            </TitleBox>
+            
+            <UploadContainer>
+                    <UploadImagePreview sx={{  display:{ md:'flex', sm : 'none' ,xs: 'none'  }}} component="img" src={leftImage} ></UploadImagePreview>
+                    <UploadButtonContainer sx={{  display:{ md:'flex', sm : 'none',xs: 'none'  }}}>
+                        <UploadButton elevation={3} >
+                            <FileUploadIcon onClick={onUploadImageButtonClick} sx={{ border:0,borderRadius:"50%", p:2}} />
+                        </UploadButton>
                         <Typography sx={{mt:2}}>이미지 업로드</Typography>
-                    </Box>
+                    </UploadButtonContainer>
+                    
                     <Box>
-                    <input style={{display:'none'}} type="file" accept="image/*" ref={inputRef} onChange={onUploadImage} />
-                
+                        <input style={{display:'none'}} type="file" accept="image/*" ref={inputRef} onChange={onUploadImage} />
                     </Box>
 
-
-                    <Box sx={{display:'flex' , flexDirection:'column' , alignItems:'start' , width:'50%' , border:0 , justifyContent:'space-between'}}>
+                    <InputContainer>
                         <Typography variant="h6" >TITLE</Typography>
-                        <StyledTextField1 id="title" value={title} onChange={onChange} sx={{width:'100%'}}/>
-                        <Typography variant="h6" sx={{my:1 }}>DESCRIPTION</Typography>
-                        <StyledTextField2 id="content" value={content} onChange={onChange} sx={{width:'100%'}} multiline rows={10}/>
-                    </Box> 
+                        <TitleTextField id="title" value={title} onChange={onChange} />
+                        <Typography variant="h6" sx={{my:1}}>DESCRIPTION</Typography>
+                        <DescriptionTextField id="content" value={content} onChange={onChange} multiline rows={10}/>
+                    </InputContainer>
+            </UploadContainer>
 
-
-            </Box>
-            <Box sx={{width:'70%' , marginX:'auto' , display:'flex' , justifyContent:'right'}}>
+            <SubmitButtonContainer>
                 <StyledButton onClick={onSubmit}> UPLOAD </StyledButton>
-            </Box>
-        </Box>
+            </SubmitButtonContainer>
+        </>
     );
 }
 

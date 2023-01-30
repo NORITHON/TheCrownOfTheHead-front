@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-
 import { Box, Button} from "@mui/material";
 import "../fonts/fonts.css";
 import { Link } from "react-router-dom";
@@ -61,15 +60,15 @@ function Header(){
     document.body.style.margin = '0';
 
     return(
-        <HeaderBox elevation={5}>
+        <HeaderBox elevation={5} >
             <LogoBox component={Link} to="/">
-                <Box component="img" src="img/logo1.png" width="150px" sx={{position:'relative' , top:-10}}></Box>     
+                <Box component="img" src="img/logo1.png" width="150px" sx={{  display : { md: 'flex' , xs:'none'},position:'relative' , top:-10}}></Box>     
             </LogoBox>
             <NavBox >
                 <StyledButton>ABOUT</StyledButton>
                 
-                <InheritLink to="../" >
-                    <StyledButton >Home</StyledButton>
+                <InheritLink to="../"  >
+                    <StyledButton>Home</StyledButton>
                 </InheritLink>
                 
                 <InheritLink to="./designer" id= "hide_designer" >
@@ -89,8 +88,8 @@ function Header(){
                 <InheritLink to={toggle === "http://localhost:3000/list" ? "../" : "./list"} onClick={onClick}>    
                 </InheritLink>
 
-                <SearchOutlinedIcon sx={{fontSize:'33px' , mx:1}}/>
-                <ShoppingCartOutlinedIcon sx={{fontSize:'30px' }}/>
+                <SearchOutlinedIcon sx={{ display : { md: 'flex' , xs:'none'},fontSize:'33px' , mx:1}}/>
+                <ShoppingCartOutlinedIcon sx={{display : { md: 'flex' , xs:'none'},fontSize:'30px' }}/>
 
             </LoginBox>
         </HeaderBox>

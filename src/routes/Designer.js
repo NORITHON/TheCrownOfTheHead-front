@@ -12,6 +12,7 @@ const ImageBoxContainer = styled(Box) ({
 
 const ImageBox = styled(Box)({
     margin:'0 auto',
+    
 })
 
 const GoLink = styled(Link)({
@@ -22,16 +23,16 @@ const GoLink = styled(Link)({
 })
 
 const GoImage = styled(Box)({
-    width:"150px" ,
-    position:"relative",
-    top: "-250px"
+    width:"10%" ,
+    // position:"absolute",
+    top: "80%"
 })
 
 function Designer(){
 
     return(
         <ImageBoxContainer>
-            <ImageBox component="img" src="img/designer.png" width="90%" ></ImageBox>
+            <ImageBox component="img" src="img/designerreal.png" width="90%" ></ImageBox>
             <GoLink to="../upload" >
                 <GoImage component="img" src="img/go.png" >
                 </GoImage>
