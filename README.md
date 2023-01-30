@@ -1,10 +1,15 @@
-# The Crown Of The Head 팀의 Moo:re 서비스 소개
+# The Crown Of The Head 팀의 Moo:re 서비스
 
-## 프로젝트 개요
-"최상위 클래스의 디자이너만 살아남는 패션 업계의 고질적인 문제를 어떻게 해결할 수 있을까?" 라는 고민에서 시작된 우리의 플랫폼 Moo:re를 소개합니다.
+## 👋 소개
 
 
-Moo:re는 make ordinary opportunity로 우리는 ‘평범한 기회를 주는 사람’입니다.
+![moore1](https://user-images.githubusercontent.com/49269218/215564794-31d79f41-d213-40f7-b4fb-4fb13a3a6dee.png)
+
+
+
+__"최상위 클래스의 디자이너만 살아남는 패션 업계의 고질적인 문제를 어떻게 해결할 수 있을까?"__ 라는 고민에서 시작된 우리의 플랫폼 __👿Moo:re__ 를 소개합니다.
+
+**👿Moo:re**는 make ordinary opportunity로 우리는 ‘평범한 기회를 주는 사람’입니다.
 
 
 독점 계약 시스템 아래에 있는 최상위권 디자이너 외의 평범한 middle class 디자이너들에게 제품을 출시할 기회, 소비자에게 노출 될 기회를 제공하는 것입니다. 
@@ -13,48 +18,43 @@ Moo:re는 make ordinary opportunity로 우리는 ‘평범한 기회를 주는 �
 
 
 
+**Moo:re**의 주 고객은 두 부류입니다.
 
 
-Moo:re의 주 고객은 두 부류입니다. 
+1. ✍디자이너 : 자신의 디자인 샘플을 마음 껏 게재할 수 있는 공간을 제공합니다. 
 
 
-1. 디자이너 : 자신의 디자인 샘플을 마음 껏 게재할 수 있는 공간을 제공합니다. 
-
-
-2. 소비자 : middle class 디자이너들의 독창적이고 개성있는 디자인 샘플을 구경하고, 좋아요 누르기, 크라우드 펀딩 참여를 할 수 있습니다.
+2. 😀소비자 : middle class 디자이너들의 독창적이고 개성있는 디자인 샘플을 구경하고, 좋아요 누르기, 크라우드 펀딩 참여를 할 수 있습니다.
 
 
 
 
 
 
-이 두 고객의 가운데에 있는 생산업체는 좋아요 수가 많은 디자인 샘플을 선택해 원자재, 인건비, 펀딩 모집 인원을 선택해 펀딩 상품으로 등록할 수 있습니다.
+이 두 고객의 가운데에 있는 생산업체는 💕좋아요 수가 많은 디자인 샘플을 선택해 원자재, 인건비, 펀딩 모집 인원을 선택해 펀딩 상품으로 등록할 수 있습니다.
 
 
 펀딩 진행중인 상품, 모집이 완료된 상품 내역을 확인하고 주문을 처리할 수 있습니다. 
 
 
 
-## 팀원 소개
-기획자 : 정수연(리더)
+## 👫 팀원 소개
+
+|<img src="https://github.com/~~~.png" width="80">|<img src="https://github.com/~~~.png" width="80">|<img src="https://github.com/ohinhyuk.png" width="80">|<img src="https://github.com/yujin9747.png" width="80">|<img src="https://github.com/woals00.png" width="80">|
+|:---:|:---:|:---:|:---:|:---:|
+|[](https://github.com/ImInnocent)|[](https://github.com/dearyeon)|[](https://github.com/ohinhyuk)|[](https://github.com/yujin9747)|[](https://github.com/woals00)|
+|정수연|이채원|오인혁|장유진|정재민
+|기획자|디자이너|프론트엔드|백엔드|백엔드
 
 
-디자이너 : 이채원
+## 🛠 개발 스택
 
+### Front   
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Mui-0C2340?style=for-the-badge&logo=MUI&logoColor=#FFFFFF"> <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=#000000"> <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
 
-프론트엔드 개발자 : 오인혁
+### Back   
 
-
-백엔드 개발자 : 장유진, 정재민
-
-
-
-## 개발 스택
-프론트 : React.js, Axios
-
-
-백 : Spring boot, Hibernate, MySQL
-
+<img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=aws&logoColor=white"> <img src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white"> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white">
 
 
 ## 개발 과정
@@ -99,81 +99,8 @@ Moo:re의 주 고객은 두 부류입니다.
 - 펀딩 참여(주소, 전화번호, 수량) : 소비자 권한
 - 주문 내역 조회 : 관리자 페이지 -> 펀딩 모집중(waiting), 모집 완료 및 제작 시작(approved)로 분류
 
+## 기능 추가 설명 (이미지)
 
 
 
 
-
-
-
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
