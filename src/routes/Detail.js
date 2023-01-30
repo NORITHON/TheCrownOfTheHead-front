@@ -1,5 +1,4 @@
-import { Label } from "@mui/icons-material";
-import { Button, Input, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -233,7 +232,7 @@ function Detail(){
     useEffect( () => {
         if(num <= 0 ) setTotalCost(0);
         else setTotalCost( num * parseInt(clothes.price));
-    } , [num])
+    } , [num, clothes.price])
 
     useEffect( () => {
         window.scrollTo(0, 0);
