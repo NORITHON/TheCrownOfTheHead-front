@@ -2,11 +2,11 @@
 
 ## 👋 소개
 
-
+   
 ![moore1](https://user-images.githubusercontent.com/49269218/215564794-31d79f41-d213-40f7-b4fb-4fb13a3a6dee.png)
 
 
-
+   
 __"최상위 클래스의 디자이너만 살아남는 패션 업계의 고질적인 문제를 어떻게 해결할 수 있을까?"__ 라는 고민에서 시작된 우리의 플랫폼 __👿Moo:re__ 를 소개합니다.
 
 **👿Moo:re**는 make ordinary opportunity로 우리는 ‘평범한 기회를 주는 사람’입니다.
@@ -57,7 +57,7 @@ __"최상위 클래스의 디자이너만 살아남는 패션 업계의 고질�
 <img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=aws&logoColor=white"> <img src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white"> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white">
 
 
-## 개발 과정
+## 🎢 개발 과정
 0. 백, 프론트 역할 분담 및 개발 시작
 
 
@@ -86,7 +86,7 @@ __"최상위 클래스의 디자이너만 살아남는 패션 업계의 고질�
 
 
 
-## 기능 구현 내용
+## 💪 기능 구현 내용
 - 디자이너로 회원가입
 - 소비자로 회원가입
 - 디자이너로 로그인
@@ -99,8 +99,22 @@ __"최상위 클래스의 디자이너만 살아남는 패션 업계의 고질�
 - 펀딩 참여(주소, 전화번호, 수량) : 소비자 권한
 - 주문 내역 조회 : 관리자 페이지 -> 펀딩 모집중(waiting), 모집 완료 및 제작 시작(approved)로 분류
 
-## 기능 추가 설명 (이미지)
+## 🖼 기능 추가 설명 (이미지)
 
+![moorefront](https://user-images.githubusercontent.com/49269218/215571600-9d9c89fb-77d9-4a95-9729-b2e75dfc8a4c.jpg)
 
+![mooretest](https://user-images.githubusercontent.com/49269218/215569379-cf5c327f-a80e-48e2-9e04-31a758d269c3.jpg)
 
+![moore3](https://user-images.githubusercontent.com/49269218/215569863-31705fe5-e2db-418f-b4cd-6aa2c8960077.jpg)
 
+![moore4](https://user-images.githubusercontent.com/49269218/215569859-0f077065-a1bd-4757-9be7-98a6d4d2252c.jpg)
+
+![moore5](https://user-images.githubusercontent.com/49269218/215569855-404dda62-566a-4b4b-bf2c-a3f29e557688.jpg)
+
+![moore6](https://user-images.githubusercontent.com/49269218/215569851-2ae4e795-9028-4862-8659-ba85dddbe21f.jpg)
+
+![moore7](https://user-images.githubusercontent.com/49269218/215569849-bd80acf4-01fd-4fa7-94a9-774f5c6743da.jpg)
+
+![moore8](https://user-images.githubusercontent.com/49269218/215569847-c950db73-a3c8-4d83-a328-eab4df60da2e.jpg)
+
+![moore9](https://user-images.githubusercontent.com/49269218/215569837-5b714e1e-9fb7-4ca4-810f-8303b1011566.jpg)
